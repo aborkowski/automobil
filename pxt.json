@@ -1,0 +1,23 @@
+{
+    "name": "Automobil ",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "BitBot": "github:4tronix/bitbot#1.4.6",
+        "radio-broadcast": "*"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md",
+        "main.py"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "blocksprj"
+}

@@ -102,7 +102,7 @@ function lights_3 () {
     bitbot.ledClear()
 }
 input.onButtonPressed(Button.A, function () {
-    radio.sendNumber(8)
+    radio.sendNumber(1)
     basic.showLeds(`
         . . # . .
         . # # . .
@@ -110,9 +110,6 @@ input.onButtonPressed(Button.A, function () {
         . # . . .
         . . . . .
         `)
-})
-input.onGesture(Gesture.FreeFall, function () {
-    radio.sendNumber(10)
 })
 function Line_followers () {
     for (let index = 0; index < 1e+103; index++) {
@@ -128,7 +125,7 @@ function Line_followers () {
     }
 }
 input.onGesture(Gesture.LogoUp, function () {
-    radio.sendNumber(5)
+    radio.sendNumber(9)
 })
 function Lights () {
     lights_1()
@@ -160,7 +157,7 @@ function Turn_Left () {
     bitbot.stop(BBStopMode.Brake)
 }
 input.onGesture(Gesture.TiltLeft, function () {
-    radio.sendNumber(1)
+    radio.sendNumber(4)
 })
 function Lights2 () {
     lights_6()
@@ -171,13 +168,13 @@ function Lights2 () {
     lights_1()
 }
 input.onGesture(Gesture.ScreenUp, function () {
-    radio.sendNumber(6)
+    radio.sendNumber(5)
 })
 input.onGesture(Gesture.ScreenDown, function () {
-    radio.sendNumber(4)
+    radio.sendNumber(10)
 })
 input.onButtonPressed(Button.AB, function () {
-    radio.sendNumber(3)
+    radio.sendNumber(7)
     basic.showLeds(`
         . . . . .
         . . . . .
@@ -203,7 +200,7 @@ input.onButtonPressed(Button.B, function () {
         `)
 })
 input.onGesture(Gesture.Shake, function () {
-    radio.sendNumber(3)
+    radio.sendNumber(8)
 })
 function driveForward () {
     Lights_forward()
@@ -218,10 +215,10 @@ function driveForward () {
     bitbot.go(BBDirection.Forward, Speed)
 }
 input.onGesture(Gesture.TiltRight, function () {
-    radio.sendNumber(2)
+    radio.sendNumber(6)
 })
 input.onGesture(Gesture.LogoDown, function () {
-    radio.sendNumber(7)
+    radio.sendNumber(2)
 })
 function lights_5 () {
     bitbot.setPixelColor(4, 0x659900)
@@ -327,18 +324,6 @@ basic.forever(function () {
     	
     }
     while (Fjärrstyr == 0) {
-    	
-    }
-})
-basic.forever(function () {
-    while (0 == 1) {
-        Speed += 10
-    }
-})
-basic.forever(function () {
-    if (true) {
-    	
-    } else {
     	
     }
 })

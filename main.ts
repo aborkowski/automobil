@@ -52,23 +52,23 @@ function lights_6 () {
 radio.onReceivedNumber(function (receivedNumber) {
     basic.showNumber(receivedNumber)
     if (receivedNumber == 1) {
-    	
+        Drive_Backwards_Left = 1
     } else if (receivedNumber == 2) {
-    	
+        Backwards = 1
     } else if (receivedNumber == 3) {
-    	
+        Drive_Backwards_Rights = 1
     } else if (receivedNumber == 4) {
-        Fjärrstyr = 1
+        Drive_Forwords_Left = 1
     } else if (receivedNumber == 5) {
-    	
+        Drive_Forwords = 1
     } else if (receivedNumber == 6) {
-    	
+        Drive_Forwords_Rights = 1
     } else if (receivedNumber == 7) {
-    	
+        Halt = 1
     } else if (receivedNumber == 8) {
-    	
+        Speed = Speed + 10
     } else if (receivedNumber == 9) {
-    	
+        Fjärrstyr = 1
     } else if (receivedNumber == 10) {
         Fjärrstyr = 0
     }
@@ -79,23 +79,11 @@ function lights_1 () {
     basic.pause(200)
     bitbot.ledClear()
 }
-input.onGesture(Gesture.TiltRight, function () {
-	
-})
 function Lights_Backward () {
     for (let index = 0; index < 2; index++) {
         Lights2()
     }
 }
-function Acelation () {
-    Speed = Speed + 10
-}
-input.onGesture(Gesture.TiltLeft, function () {
-	
-})
-input.onGesture(Gesture.ScreenUp, function () {
-	
-})
 function Lights_forward () {
     for (let index = 0; index < 2; index++) {
         Lights()
@@ -113,11 +101,18 @@ function lights_3 () {
     basic.pause(200)
     bitbot.ledClear()
 }
-input.onGesture(Gesture.LogoUp, function () {
-	
-})
 input.onButtonPressed(Button.A, function () {
-    radio.sendNumber(7)
+    radio.sendNumber(8)
+    basic.showLeds(`
+        . . # . .
+        . # # . .
+        # # # . .
+        . # . . .
+        . . . . .
+        `)
+})
+input.onGesture(Gesture.FreeFall, function () {
+    radio.sendNumber(10)
 })
 function Line_followers () {
     for (let index = 0; index < 1e+103; index++) {
@@ -132,8 +127,8 @@ function Line_followers () {
         }
     }
 }
-input.onGesture(Gesture.Shake, function () {
-	
+input.onGesture(Gesture.LogoUp, function () {
+    radio.sendNumber(5)
 })
 function Lights () {
     lights_1()
@@ -164,6 +159,9 @@ function Turn_Left () {
     basic.pause(1000)
     bitbot.stop(BBStopMode.Brake)
 }
+input.onGesture(Gesture.TiltLeft, function () {
+    radio.sendNumber(1)
+})
 function Lights2 () {
     lights_6()
     lights_5()
@@ -172,17 +170,21 @@ function Lights2 () {
     lights_2()
     lights_1()
 }
-input.onGesture(Gesture.FreeFall, function () {
-	
+input.onGesture(Gesture.ScreenUp, function () {
+    radio.sendNumber(6)
 })
 input.onGesture(Gesture.ScreenDown, function () {
-	
-})
-input.onGesture(Gesture.LogoDown, function () {
-	
+    radio.sendNumber(4)
 })
 input.onButtonPressed(Button.AB, function () {
-	
+    radio.sendNumber(3)
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        # # # # #
+        . . . . .
+        . . . . .
+        `)
 })
 function lights_2 () {
     bitbot.setPixelColor(1, 0x659900)
@@ -191,7 +193,17 @@ function lights_2 () {
     bitbot.ledClear()
 }
 input.onButtonPressed(Button.B, function () {
-	
+    radio.sendNumber(9)
+    basic.showLeds(`
+        . . # . .
+        . . # # .
+        . . # # #
+        . . . # .
+        . . . . .
+        `)
+})
+input.onGesture(Gesture.Shake, function () {
+    radio.sendNumber(3)
 })
 function driveForward () {
     Lights_forward()
@@ -205,6 +217,12 @@ function driveForward () {
         `)
     bitbot.go(BBDirection.Forward, Speed)
 }
+input.onGesture(Gesture.TiltRight, function () {
+    radio.sendNumber(2)
+})
+input.onGesture(Gesture.LogoDown, function () {
+    radio.sendNumber(7)
+})
 function lights_5 () {
     bitbot.setPixelColor(4, 0x659900)
     bitbot.setPixelColor(10, 0x659900)
@@ -270,19 +288,23 @@ function Lights_While_Line_folowers_on () {
         . . # . .
         `)
 }
+let Halt = 0
+let Drive_Forwords_Rights = 0
+let Drive_Forwords = 0
+let Drive_Forwords_Left = 0
+let Drive_Backwards_Rights = 0
+let Backwards = 0
+let Drive_Backwards_Left = 0
 let Led = 0
-let Speed = 0
 let Fjärrstyr = 0
-Fjärrstyr += 1
+let Speed = 0
 Speed = 10
 radio.sendNumber(6)
+Fjärrstyr = 1
 basic.forever(function () {
-    let Drive_Forwords_Rights = 0
-    let Drive_Forwords = 0
-    let Drive_Forwords_Left = 0
-    let Drive_Backwards_Rights = 0
-    let Backwards = 0
-    let Drive_Backwards_Left = 0
+	
+})
+basic.forever(function () {
     while (Drive_Backwards_Left == 1) {
     	
     }
@@ -301,21 +323,12 @@ basic.forever(function () {
     while (Drive_Forwords_Rights == 1) {
     	
     }
-    while (0 == 1) {
+    while (Halt == 1) {
     	
     }
-    while (0 == 1) {
+    while (Fjärrstyr == 0) {
     	
     }
-    while (0 == 1) {
-    	
-    }
-    while (0 == 1) {
-    	
-    }
-})
-basic.forever(function () {
-	
 })
 basic.forever(function () {
     while (0 == 1) {

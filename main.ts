@@ -315,7 +315,7 @@ basic.forever(function () {
     	
     }
     while (Drive_Forwords == 1) {
-    	
+        driveForward()
     }
     while (Drive_Forwords_Rights == 1) {
     	

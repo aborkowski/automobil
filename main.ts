@@ -50,7 +50,6 @@ function lights_6 () {
     bitbot.ledClear()
 }
 radio.onReceivedNumber(function (receivedNumber) {
-    basic.showNumber(receivedNumber)
     if (receivedNumber == 1) {
         Drive_Backwards_Left = 1
     } else if (receivedNumber == 2) {
@@ -295,8 +294,9 @@ let Drive_Backwards_Left = 0
 let Led = 0
 let Fjärrstyr = 0
 let Speed = 0
+driveForward()
 Speed = 10
-radio.sendNumber(6)
+radio.sendNumber(5)
 Fjärrstyr = 1
 basic.forever(function () {
 	

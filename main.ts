@@ -300,28 +300,21 @@ basic.forever(function () {
 	
 })
 basic.forever(function () {
-    while (Drive_Backwards_Left == 1) {
+    if (Drive_Backwards_Left == 1) {
     	
-    }
-    while (Backwards == 1) {
+    } else if (Backwards == 1) {
     	
-    }
-    while (Drive_Backwards_Rights == 1) {
+    } else if (Drive_Backwards_Rights == 1) {
     	
-    }
-    while (Drive_Forwords_Left == 1) {
+    } else if (Drive_Forwords_Left == 1) {
     	
-    }
-    while (Drive_Forwords == 1) {
-        driveForward()
-    }
-    while (Drive_Forwords_Rights == 1) {
+    } else if (Drive_Forwords == 1) {
     	
-    }
-    while (Halt == 1) {
+    } else if (Drive_Forwords_Rights == 1) {
+    	
+    } else if (Halt == 1) {
         Stop()
-    }
-    while (Fjärrstyr == 0) {
+    } else if (Fjärrstyr == 0) {
     	
     }
 })

@@ -304,8 +304,20 @@ function Lights_While_Line_folowers_on () {
         . . # . .
         `)
 }
+function Variables () {
+    Drive_Backwards_Left = 0
+    Backwards = 0
+    Drive_Backwards_Rights = 0
+    Drive_Forwords_Left = 0
+    Drive_Forwords = 1
+    Drive_Forwords_Rights = 0
+    Halt = 0
+    Speed = 10
+    Fjärrstyr = 0
+}
 let Control = 0
 let Fjärrstyr = 0
+let Speed = 0
 let Halt = 0
 let Drive_Forwords_Rights = 0
 let Drive_Forwords = 0
@@ -314,9 +326,7 @@ let Drive_Backwards_Rights = 0
 let Backwards = 0
 let Drive_Backwards_Left = 0
 let Led = 0
-let Speed = 0
-radio.sendNumber(5)
-Speed = 10
+Variables()
 basic.forever(function () {
 	
 })

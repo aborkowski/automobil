@@ -70,6 +70,26 @@ radio.onReceivedNumber(function (receivedNumber) {
         Fjärrstyr = 1
     } else if (receivedNumber == 10) {
         Fjärrstyr = 0
+    } else if (receivedNumber == 1) {
+    	
+    } else if (receivedNumber == 2) {
+    	
+    } else if (receivedNumber == 3) {
+    	
+    } else if (receivedNumber == 4) {
+    	
+    } else if (receivedNumber == 5) {
+    	
+    } else if (receivedNumber == 6) {
+    	
+    } else if (receivedNumber == 7) {
+    	
+    } else if (receivedNumber == 8) {
+    	
+    } else if (receivedNumber == 9) {
+    	
+    } else if (receivedNumber == 10) {
+    	
     }
 })
 function lights_1 () {
@@ -300,21 +320,23 @@ basic.forever(function () {
 	
 })
 basic.forever(function () {
-    if (Drive_Backwards_Left == 1) {
-    	
-    } else if (Backwards == 1) {
-    	
-    } else if (Drive_Backwards_Rights == 1) {
-    	
-    } else if (Drive_Forwords_Left == 1) {
-    	
-    } else if (Drive_Forwords == 1) {
-        driveForward()
-    } else if (Drive_Forwords_Rights == 1) {
-    	
-    } else if (Halt == 1) {
-        Stop()
-    } else if (Fjärrstyr == 0) {
-    	
+    while (0 == 0) {
+        if (Drive_Backwards_Left == 1) {
+        	
+        } else if (Backwards == 1) {
+        	
+        } else if (Drive_Backwards_Rights == 1) {
+        	
+        } else if (Drive_Forwords_Left == 1) {
+        	
+        } else if (Drive_Forwords == 1) {
+            driveForward()
+        } else if (Drive_Forwords_Rights == 1) {
+        	
+        } else if (Halt == 1) {
+            Stop()
+        } else if (Fjärrstyr == 0) {
+        	
+        }
     }
 })

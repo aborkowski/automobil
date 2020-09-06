@@ -309,7 +309,7 @@ basic.forever(function () {
     } else if (Drive_Forwords_Left == 1) {
     	
     } else if (Drive_Forwords == 1) {
-    	
+        driveForward()
     } else if (Drive_Forwords_Rights == 1) {
     	
     } else if (Halt == 1) {

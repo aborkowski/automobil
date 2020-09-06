@@ -284,6 +284,7 @@ function Lights_While_Line_folowers_on () {
         . . # . .
         `)
 }
+let Fjärrstyr = 0
 let Halt = 0
 let Drive_Forwords_Rights = 0
 let Drive_Forwords = 0
@@ -292,12 +293,9 @@ let Drive_Backwards_Rights = 0
 let Backwards = 0
 let Drive_Backwards_Left = 0
 let Led = 0
-let Fjärrstyr = 0
 let Speed = 0
 driveForward()
 Speed = 10
-radio.sendNumber(5)
-Fjärrstyr = 1
 basic.forever(function () {
 	
 })
@@ -321,7 +319,7 @@ basic.forever(function () {
     	
     }
     while (Halt == 1) {
-    	
+        Stop()
     }
     while (Fjärrstyr == 0) {
     	

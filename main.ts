@@ -71,25 +71,25 @@ radio.onReceivedNumber(function (receivedNumber) {
     } else if (receivedNumber == 10) {
         Fjärrstyr = 0
     } else if (receivedNumber == 1) {
-    	
+        Control = 1
     } else if (receivedNumber == 2) {
-    	
+        Control = 1
     } else if (receivedNumber == 3) {
-    	
+        Control = 1
     } else if (receivedNumber == 4) {
-    	
+        Control = 1
     } else if (receivedNumber == 5) {
-    	
+        Control = 1
     } else if (receivedNumber == 6) {
-    	
+        Control = 1
     } else if (receivedNumber == 7) {
-    	
+        Control = 1
     } else if (receivedNumber == 8) {
-    	
+        Control = 1
     } else if (receivedNumber == 9) {
-    	
+        Control = 1
     } else if (receivedNumber == 10) {
-    	
+        Control = 1
     }
 })
 function lights_1 () {
@@ -304,6 +304,7 @@ function Lights_While_Line_folowers_on () {
         . . # . .
         `)
 }
+let Control = 0
 let Fjärrstyr = 0
 let Halt = 0
 let Drive_Forwords_Rights = 0
@@ -320,7 +321,7 @@ basic.forever(function () {
 	
 })
 basic.forever(function () {
-    while (0 == 0) {
+    while (Control == 1) {
         if (Drive_Backwards_Left == 1) {
         	
         } else if (Backwards == 1) {

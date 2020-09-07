@@ -51,24 +51,33 @@ function lights_6 () {
 }
 radio.onReceivedNumber(function (receivedNumber) {
     if (receivedNumber == 1) {
+        basic.pause(100)
         Drive_Backwards_Left = 1
     } else if (receivedNumber == 2) {
+        basic.pause(100)
         Backwards = 1
     } else if (receivedNumber == 3) {
+        basic.pause(100)
         Drive_Backwards_Rights = 1
     } else if (receivedNumber == 4) {
+        basic.pause(100)
         Drive_Forwords_Left = 1
     } else if (receivedNumber == 5) {
+        basic.pause(100)
         Drive_Forwords = 1
     } else if (receivedNumber == 6) {
+        basic.pause(100)
         Drive_Forwords_Rights = 1
     } else if (receivedNumber == 7) {
+        basic.pause(100)
         Halt = 1
     } else if (receivedNumber == 8) {
         Speed = Speed + 10
     } else if (receivedNumber == 9) {
+        basic.pause(100)
         Fjärrstyr = 1
     } else if (receivedNumber == 10) {
+        basic.pause(100)
         Fjärrstyr = 0
     } else if (receivedNumber == 1) {
         Control = 1
@@ -83,8 +92,6 @@ radio.onReceivedNumber(function (receivedNumber) {
     } else if (receivedNumber == 6) {
         Control = 1
     } else if (receivedNumber == 7) {
-        Control = 1
-    } else if (receivedNumber == 8) {
         Control = 1
     } else if (receivedNumber == 9) {
         Control = 1

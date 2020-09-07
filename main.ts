@@ -50,6 +50,7 @@ function lights_6 () {
     bitbot.ledClear()
 }
 radio.onReceivedNumber(function (receivedNumber) {
+    basic.showNumber(receivedNumber)
     if (receivedNumber == 1) {
     	
     } else if (receivedNumber == 2) {
@@ -167,36 +168,52 @@ input.onGesture(Gesture.ScreenUp, function () {
 })
 function radio2 (receivedNumber: number) {
     if (receivedNumber == 1) {
+        Control = 0
+        Control = 1
         basic.pause(100)
         Drive_Backwards_Left = 1
     } else if (receivedNumber == 2) {
+        Control = 0
+        Control = 1
         basic.pause(100)
         Backwards = 1
     } else if (receivedNumber == 3) {
+        Control = 0
+        Control = 1
         basic.pause(100)
         Drive_Backwards_Rights = 1
     } else if (receivedNumber == 4) {
+        Control = 0
+        Control = 1
         basic.pause(100)
         Drive_Forwords_Left = 1
     } else if (receivedNumber == 5) {
+        Control = 0
+        Control = 1
         basic.pause(100)
         Drive_Forwords = 1
     } else if (receivedNumber == 6) {
+        Control = 0
+        Control = 1
         basic.pause(100)
         Drive_Forwords_Rights = 1
     } else if (receivedNumber == 7) {
+        Control = 0
+        Control = 1
         basic.pause(100)
         Halt = 1
     } else if (receivedNumber == 8) {
         Speed = Speed + 10
     } else if (receivedNumber == 9) {
+        Control = 0
+        Control = 1
         basic.pause(100)
         Fjärrstyr = 1
     } else if (receivedNumber == 10) {
+        Control = 0
+        Control = 1
         basic.pause(100)
         Fjärrstyr = 0
-    } else if (receivedNumber == 0) {
-    	
     }
 }
 input.onGesture(Gesture.ScreenDown, function () {
@@ -219,7 +236,7 @@ function lights_2 () {
     bitbot.ledClear()
 }
 input.onButtonPressed(Button.B, function () {
-    radio.sendNumber(9)
+    radio.sendNumber(3)
     basic.showLeds(`
         . . # . .
         . . # # .
@@ -334,13 +351,13 @@ let Drive_Forwords_Left = 0
 let Drive_Backwards_Rights = 0
 let Backwards = 0
 let Drive_Backwards_Left = 0
+let Control = 0
 let Led = 0
 Variables()
 basic.forever(function () {
 	
 })
 basic.forever(function () {
-    let Control = 0
     while (Control == 1) {
         if (Drive_Backwards_Left == 1) {
             Turn_Backwards_Left()

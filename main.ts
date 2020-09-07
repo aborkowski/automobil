@@ -333,17 +333,17 @@ basic.forever(function () {
 basic.forever(function () {
     while (Control == 1) {
         if (Drive_Backwards_Left == 1) {
-        	
+            Turn_Backwards_Left()
         } else if (Backwards == 1) {
-        	
+            Drive_Backwards()
         } else if (Drive_Backwards_Rights == 1) {
-        	
+            Turn_Backwards_Right()
         } else if (Drive_Forwords_Left == 1) {
-        	
+            Turn_Left()
         } else if (Drive_Forwords == 1) {
             driveForward()
         } else if (Drive_Forwords_Rights == 1) {
-        	
+            Turn_Right()
         } else if (Halt == 1) {
             Stop()
         } else if (Fjärrstyr == 0) {

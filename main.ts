@@ -50,23 +50,22 @@ function lights_6 () {
     bitbot.ledClear()
 }
 radio.onReceivedNumber(function (receivedNumber) {
-    basic.showNumber(receivedNumber)
     if (receivedNumber == 1) {
-    	
+        radio2(receivedNumber)
     } else if (receivedNumber == 2) {
-    	
+        radio2(receivedNumber)
     } else if (receivedNumber == 3) {
-    	
+        radio2(receivedNumber)
     } else if (receivedNumber == 5) {
-    	
+        radio2(receivedNumber)
     } else if (receivedNumber == 6) {
-    	
+        radio2(receivedNumber)
     } else if (receivedNumber == 7) {
-    	
+        radio2(receivedNumber)
     } else if (receivedNumber == 9) {
-    	
+        radio2(receivedNumber)
     } else if (receivedNumber == 10) {
-    	
+        radio2(receivedNumber)
     }
 })
 function lights_1 () {

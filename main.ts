@@ -181,54 +181,7 @@ touchbit.on(touchbit.TouchPad.left, touchbit.TouchEvent.pressed, function () {
 	
 })
 function radio2 (receivedNumber: number) {
-    if (receivedNumber == 1) {
-        Control = 0
-        Control = 1
-        basic.pause(100)
-        Drive_Backwards_Left = 1
-    } else if (receivedNumber == 2) {
-        Control = 0
-        Control = 1
-        basic.pause(100)
-        Backwards = 1
-    } else if (receivedNumber == 3) {
-        Control = 0
-        Control = 1
-        basic.pause(100)
-        Drive_Backwards_Rights = 1
-    } else if (receivedNumber == 4) {
-        Control = 0
-        Control = 1
-        basic.pause(100)
-        Drive_Forwords_Left = 1
-    } else if (receivedNumber == 5) {
-        Control = 0
-        Control = 1
-        basic.pause(100)
-        Drive_Forwords = 1
-    } else if (receivedNumber == 6) {
-        Control = 0
-        Control = 1
-        basic.pause(100)
-        Drive_Forwords_Rights = 1
-    } else if (receivedNumber == 7) {
-        Control = 0
-        Control = 1
-        basic.pause(100)
-        Halt = 1
-    } else if (receivedNumber == 8) {
-        Speed = Speed + 10
-    } else if (receivedNumber == 9) {
-        Control = 0
-        Control = 1
-        basic.pause(100)
-        Fjärrstyr = 1
-    } else if (receivedNumber == 10) {
-        Control = 0
-        Control = 1
-        basic.pause(100)
-        Fjärrstyr = 0
-    }
+	
 }
 input.onGesture(Gesture.ScreenDown, function () {
     radio.sendNumber(10)
@@ -372,7 +325,6 @@ touchbit.on(touchbit.TouchPad.a, touchbit.TouchEvent.released, function () {
 	
 })
 let Fjärrstyr = 0
-let Speed = 0
 let Halt = 0
 let Drive_Forwords_Rights = 0
 let Drive_Forwords = 0
@@ -380,21 +332,37 @@ let Drive_Forwords_Left = 0
 let Drive_Backwards_Rights = 0
 let Backwards = 0
 let Drive_Backwards_Left = 0
-let Control = 0
+let Speed = 0
 let Led = 0
 Variables()
 basic.forever(function () {
-	
+    while (Fjärrstyr == 0) {
+        if (bitbot.readLine(BBLineSensor.Left) == 1) {
+            Line_followers()
+        } else if (bitbot.readLine(BBLineSensor.Right) == 1) {
+            Line_followers()
+        } else if (bitbot.readLine(BBLineSensor.Left) == 0 == (bitbot.readLine(BBLineSensor.Right) == 0)) {
+            driveForward()
+        }
+    }
 })
 basic.forever(function () {
-    while (Control == 1) {
+    let Control = 0
+    let Framåt = 0
+    let Bakåt = 0
+    while (Bakåt == 1) {
         if (Drive_Backwards_Left == 1) {
             Turn_Backwards_Left()
         } else if (Backwards == 1) {
             Drive_Backwards()
         } else if (Drive_Backwards_Rights == 1) {
             Turn_Backwards_Right()
-        } else if (Drive_Forwords_Left == 1) {
+        } else if (Halt == 1) {
+            Stop()
+        }
+    }
+    while (Framåt == 1) {
+        if (Drive_Forwords_Left == 1) {
             Turn_Left()
         } else if (Drive_Forwords == 1) {
             driveForward()
@@ -402,7 +370,12 @@ basic.forever(function () {
             Turn_Right()
         } else if (Halt == 1) {
             Stop()
-        } else if (Fjärrstyr == 0) {
+        }
+    }
+    while (Control == 1) {
+        if (Fjärrstyr == 0) {
+        	
+        } else if (Fjärrstyr == 1) {
         	
         }
     }

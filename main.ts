@@ -50,23 +50,7 @@ function lights_6 () {
     bitbot.ledClear()
 }
 radio.onReceivedNumber(function (receivedNumber) {
-    if (receivedNumber == 1) {
-        radio2(receivedNumber)
-    } else if (receivedNumber == 2) {
-        radio2(receivedNumber)
-    } else if (receivedNumber == 3) {
-        radio2(receivedNumber)
-    } else if (receivedNumber == 5) {
-        radio2(receivedNumber)
-    } else if (receivedNumber == 6) {
-        radio2(receivedNumber)
-    } else if (receivedNumber == 7) {
-        radio2(receivedNumber)
-    } else if (receivedNumber == 9) {
-        radio2(receivedNumber)
-    } else if (receivedNumber == 10) {
-        radio2(receivedNumber)
-    }
+	
 })
 function lights_1 () {
     bitbot.setPixelColor(0, 0x659900)
@@ -75,7 +59,7 @@ function lights_1 () {
     bitbot.ledClear()
 }
 touchbit.on(touchbit.TouchPad.b, touchbit.TouchEvent.pressed, function () {
-	
+    radio.sendNumber(2)
 })
 function Lights_Backward () {
     for (let index = 0; index < 2; index++) {
@@ -99,18 +83,8 @@ function lights_3 () {
     basic.pause(200)
     bitbot.ledClear()
 }
-touchbit.on(touchbit.TouchPad.c, touchbit.TouchEvent.released, function () {
-	
-})
 input.onButtonPressed(Button.A, function () {
-    radio.sendNumber(1)
-    basic.showLeds(`
-        . . # . .
-        . # # . .
-        # # # . .
-        . # . . .
-        . . . . .
-        `)
+    radio.sendNumber(5)
 })
 function Line_followers () {
     for (let index = 0; index < 1e+103; index++) {
@@ -126,7 +100,7 @@ function Line_followers () {
     }
 }
 input.onGesture(Gesture.LogoUp, function () {
-    radio.sendNumber(9)
+    radio.sendNumber(2)
 })
 function Lights () {
     lights_1()
@@ -158,10 +132,10 @@ function Turn_Left () {
     bitbot.stop(BBStopMode.Brake)
 }
 touchbit.on(touchbit.TouchPad.d, touchbit.TouchEvent.pressed, function () {
-	
+    radio.sendNumber(4)
 })
 input.onGesture(Gesture.TiltLeft, function () {
-    radio.sendNumber(4)
+    radio.sendNumber(1)
 })
 function Lights2 () {
     lights_6()
@@ -172,32 +146,25 @@ function Lights2 () {
     lights_1()
 }
 input.onGesture(Gesture.ScreenUp, function () {
-    radio.sendNumber(5)
+    radio.sendNumber(6)
 })
 touchbit.on(touchbit.TouchPad.right, touchbit.TouchEvent.pressed, function () {
-	
+    radio.sendNumber(6)
 })
 touchbit.on(touchbit.TouchPad.left, touchbit.TouchEvent.pressed, function () {
-	
+    radio.sendNumber(5)
 })
 function radio2 (receivedNumber: number) {
 	
 }
 input.onGesture(Gesture.ScreenDown, function () {
-    radio.sendNumber(10)
+    radio.sendNumber(5)
 })
 touchbit.on(touchbit.TouchPad.c, touchbit.TouchEvent.pressed, function () {
-	
+    radio.sendNumber(3)
 })
 input.onButtonPressed(Button.AB, function () {
     radio.sendNumber(7)
-    basic.showLeds(`
-        . . . . .
-        . . . . .
-        # # # # #
-        . . . . .
-        . . . . .
-        `)
 })
 function lights_2 () {
     bitbot.setPixelColor(1, 0x659900)
@@ -206,17 +173,10 @@ function lights_2 () {
     bitbot.ledClear()
 }
 input.onButtonPressed(Button.B, function () {
-    radio.sendNumber(3)
-    basic.showLeds(`
-        . . # . .
-        . . # # .
-        . . # # #
-        . . . # .
-        . . . . .
-        `)
+    radio.sendNumber(6)
 })
 input.onGesture(Gesture.Shake, function () {
-    radio.sendNumber(8)
+    radio.sendNumber(7)
 })
 function driveForward () {
     Lights_forward()
@@ -231,13 +191,10 @@ function driveForward () {
     bitbot.go(BBDirection.Forward, Speed)
 }
 input.onGesture(Gesture.TiltRight, function () {
-    radio.sendNumber(6)
-})
-touchbit.on(touchbit.TouchPad.d, touchbit.TouchEvent.released, function () {
-	
+    radio.sendNumber(4)
 })
 input.onGesture(Gesture.LogoDown, function () {
-    radio.sendNumber(2)
+    radio.sendNumber(3)
 })
 function lights_5 () {
     bitbot.setPixelColor(4, 0x659900)
@@ -246,7 +203,7 @@ function lights_5 () {
     bitbot.ledClear()
 }
 touchbit.on(touchbit.TouchPad.a, touchbit.TouchEvent.pressed, function () {
-	
+    radio.sendNumber(1)
 })
 function Turn_Backwards_Left () {
     bitbot.stop(BBStopMode.Brake)
@@ -295,9 +252,6 @@ function Drive_Backwards () {
         `)
     bitbot.go(BBDirection.Reverse, Speed)
 }
-touchbit.on(touchbit.TouchPad.b, touchbit.TouchEvent.released, function () {
-	
-})
 function Lights_While_Line_folowers_on () {
     for (let index3 = 0; index3 <= 11; index3++) {
         bitbot.setPixelColor(index3, 0xFF0000)
@@ -321,9 +275,6 @@ function Variables () {
     Speed = 10
     Fjärrstyr = 0
 }
-touchbit.on(touchbit.TouchPad.a, touchbit.TouchEvent.released, function () {
-	
-})
 let Fjärrstyr = 0
 let Halt = 0
 let Drive_Forwords_Rights = 0

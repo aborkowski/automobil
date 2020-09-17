@@ -58,6 +58,10 @@ function lights_1 () {
     basic.pause(200)
     bitbot.ledClear()
 }
+input.onGesture(Gesture.EightG, function () {
+    radio.sendNumber(7)
+    basic.pause(5000)
+})
 touchbit.on(touchbit.TouchPad.b, touchbit.TouchEvent.pressed, function () {
     radio.sendNumber(2)
 })
@@ -85,6 +89,7 @@ function lights_3 () {
 }
 input.onButtonPressed(Button.A, function () {
     radio.sendNumber(5)
+    basic.pause(5000)
 })
 function Line_followers () {
     for (let index = 0; index < 1e+103; index++) {
@@ -147,6 +152,7 @@ function Lights2 () {
 }
 input.onGesture(Gesture.ScreenUp, function () {
     radio.sendNumber(6)
+    basic.pause(5000)
 })
 touchbit.on(touchbit.TouchPad.right, touchbit.TouchEvent.pressed, function () {
     radio.sendNumber(6)
@@ -159,6 +165,7 @@ function radio2 (receivedNumber: number) {
 }
 input.onGesture(Gesture.ScreenDown, function () {
     radio.sendNumber(5)
+    basic.pause(5000)
 })
 touchbit.on(touchbit.TouchPad.c, touchbit.TouchEvent.pressed, function () {
     radio.sendNumber(3)
@@ -174,9 +181,10 @@ function lights_2 () {
 }
 input.onButtonPressed(Button.B, function () {
     radio.sendNumber(6)
+    basic.pause(5000)
 })
 input.onGesture(Gesture.Shake, function () {
-    radio.sendNumber(7)
+    radio.sendNumber(0)
 })
 function driveForward () {
     Lights_forward()
@@ -298,10 +306,8 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    let Control = 0
-    let Framåt = 0
-    let Bakåt = 0
-    while (Bakåt == 1) {
+    let mode = 0
+    while (mode == 1) {
         if (Drive_Backwards_Left == 1) {
             Turn_Backwards_Left()
         } else if (Backwards == 1) {
@@ -312,7 +318,7 @@ basic.forever(function () {
             Stop()
         }
     }
-    while (Framåt == 1) {
+    while (mode == 2) {
         if (Drive_Forwords_Left == 1) {
             Turn_Left()
         } else if (Drive_Forwords == 1) {
@@ -323,7 +329,7 @@ basic.forever(function () {
             Stop()
         }
     }
-    while (Control == 1) {
+    while (mode == 3) {
         if (Fjärrstyr == 0) {
         	
         } else if (Fjärrstyr == 1) {

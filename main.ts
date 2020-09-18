@@ -50,7 +50,29 @@ function lights_6 () {
     bitbot.ledClear()
 }
 radio.onReceivedNumber(function (receivedNumber) {
-	
+    if (receivedNumber == 1) {
+    	
+    } else if (receivedNumber == 2) {
+    	
+    } else if (receivedNumber == 3) {
+    	
+    } else if (receivedNumber == 4) {
+    	
+    } else if (receivedNumber == 5) {
+        if (mode == 0) {
+        	
+        } else if (false) {
+        	
+        } else if (false) {
+        	
+        } else {
+        	
+        }
+    } else if (receivedNumber == 5) {
+    	
+    } else {
+    	
+    }
 })
 function lights_1 () {
     bitbot.setPixelColor(0, 0x659900)
@@ -292,6 +314,7 @@ let Drive_Backwards_Rights = 0
 let Backwards = 0
 let Drive_Backwards_Left = 0
 let Speed = 0
+let mode = 0
 let Led = 0
 Variables()
 basic.forever(function () {
@@ -306,7 +329,6 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    let mode = 0
     while (mode == 1) {
         if (Drive_Backwards_Left == 1) {
             Turn_Backwards_Left()

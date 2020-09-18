@@ -51,25 +51,53 @@ function lights_6 () {
 }
 radio.onReceivedNumber(function (receivedNumber) {
     if (receivedNumber == 1) {
-    	
+        if (mode == 1) {
+        	
+        } else if (mode == 2) {
+        	
+        } else if (mode == 3) {
+        	
+        }
     } else if (receivedNumber == 2) {
-    	
+        if (mode == 1) {
+        	
+        } else if (mode == 2) {
+        	
+        } else if (mode == 3) {
+        	
+        }
     } else if (receivedNumber == 3) {
-    	
+        if (mode == 1) {
+        	
+        } else if (mode == 2) {
+        	
+        } else if (mode == 3) {
+        	
+        }
     } else if (receivedNumber == 4) {
-    	
-    } else if (receivedNumber == 5) {
-        if (mode == 0) {
+        if (mode == 1) {
         	
-        } else if (false) {
+        } else if (mode == 2) {
         	
-        } else if (false) {
-        	
-        } else {
+        } else if (mode == 3) {
         	
         }
     } else if (receivedNumber == 5) {
-    	
+        if (mode == 1) {
+            mode = 3
+        } else if (mode == 2) {
+            mode = 1
+        } else if (mode == 3) {
+            mode = 2
+        }
+    } else if (receivedNumber == 6) {
+        if (mode == 1) {
+            mode = 2
+        } else if (mode == 2) {
+            mode = 3
+        } else if (mode == 3) {
+            mode = 1
+        }
     } else {
     	
     }

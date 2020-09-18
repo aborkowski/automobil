@@ -74,6 +74,9 @@ function lights_1 () {
     basic.pause(200)
     bitbot.ledClear()
 }
+function Snabbare () {
+    mode = Speed + 10
+}
 input.onGesture(Gesture.EightG, function () {
     radio.sendNumber(7)
     basic.pause(5000)
@@ -179,9 +182,9 @@ touchbit.on(touchbit.TouchPad.left, touchbit.TouchEvent.pressed, function () {
 function radio2 (receivedNumber: number) {
     if (receivedNumber == 1) {
         if (mode == 1) {
-        	
+            Turn_Left()
         } else if (mode == 2) {
-        	
+            Turn_Backwards_Left()
         } else if (mode == 3) {
         	
         } else if (mode == 4) {
@@ -189,9 +192,9 @@ function radio2 (receivedNumber: number) {
         }
     } else if (receivedNumber == 2) {
         if (mode == 1) {
-        	
+            driveForward()
         } else if (mode == 2) {
-        	
+            Drive_Backwards()
         } else if (mode == 3) {
         	
         } else if (mode == 4) {
@@ -209,9 +212,9 @@ function radio2 (receivedNumber: number) {
         }
     } else if (receivedNumber == 4) {
         if (mode == 1) {
-        	
+            Turn_Right()
         } else if (mode == 2) {
-        	
+            Turn_Backwards_Right()
         } else if (mode == 3) {
         	
         } else if (mode == 4) {
@@ -225,7 +228,7 @@ function radio2 (receivedNumber: number) {
         } else if (mode == 3) {
             mode = 2
         } else if (mode == 4) {
-        	
+            mode = 2
         }
     } else if (receivedNumber == 6) {
         if (mode == 1) {
@@ -237,17 +240,17 @@ function radio2 (receivedNumber: number) {
         } else if (mode == 4) {
         	
         }
-    } else if (receivedNumber == 6) {
+    } else if (receivedNumber == 7) {
         if (mode == 1) {
-        	
+            Stop()
         } else if (mode == 2) {
-        	
+            Stop()
         } else if (mode == 3) {
-        	
+            Stop()
         } else if (mode == 4) {
         	
         }
-    } else if (receivedNumber == 7) {
+    } else if (receivedNumber == 8) {
         if (mode == 1) {
         	
         } else if (mode == 2) {

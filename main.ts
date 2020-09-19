@@ -1,6 +1,17 @@
 enum RadioMessage {
     message1 = 49434
 }
+let Led = 0
+let mode = 0
+let Speed = 0
+let Drive_Backwards_Left = 0
+let Backwards = 0
+let Drive_Backwards_Rights = 0
+let Drive_Forwords_Left = 0
+let Drive_Forwords = 0
+let Drive_Forwords_Rights = 0
+let Halt = 0
+let Fjärrstyr = 0
 function Turn_Right () {
     bitbot.stop(BBStopMode.Brake)
     for (let index = 0; index < 2; index++) {
@@ -77,10 +88,6 @@ function lights_1 () {
 function Snabbare () {
     mode = Speed + 10
 }
-input.onGesture(Gesture.EightG, function () {
-    radio.sendNumber(7)
-    basic.pause(5000)
-})
 touchbit.on(touchbit.TouchPad.b, touchbit.TouchEvent.pressed, function () {
     radio.sendNumber(2)
 })
@@ -119,7 +126,7 @@ function Line_followers () {
             bitbot.driveTurnMilliseconds(BBRobotDirection.Right, 300, 45)
             Lights_While_Line_folowers_on()
         } else if (bitbot.readLine(BBLineSensor.Left) == 0 == (bitbot.readLight(BBLightSensor.Left) == 0)) {
-            bitbot.drive(400)
+            bitbot.drive(Speed)
         }
     }
 }
@@ -252,11 +259,11 @@ function radio2 (receivedNumber: number) {
         }
     } else if (receivedNumber == 8) {
         if (mode == 1) {
-        	
+            Snabbare()
         } else if (mode == 2) {
-        	
+            Snabbare()
         } else if (mode == 3) {
-        	
+            Snabbare()
         } else if (mode == 4) {
         	
         }
@@ -311,6 +318,9 @@ function lights_5 () {
 }
 touchbit.on(touchbit.TouchPad.a, touchbit.TouchEvent.pressed, function () {
     radio.sendNumber(1)
+})
+input.onGesture(Gesture.ThreeG, function () {
+    basic.showString("Hello!")
 })
 function Turn_Backwards_Left () {
     bitbot.stop(BBStopMode.Brake)
@@ -382,18 +392,6 @@ function Variables () {
     Speed = 10
     Fjärrstyr = 0
 }
-let Fjärrstyr = 0
-let Halt = 0
-let Drive_Forwords_Rights = 0
-let Drive_Forwords = 0
-let Drive_Forwords_Left = 0
-let Drive_Backwards_Rights = 0
-let Backwards = 0
-let Drive_Backwards_Left = 0
-let Speed = 0
-let mode = 0
-let Led = 0
-Variables()
 basic.forever(function () {
     while (Fjärrstyr == 0) {
         if (bitbot.readLine(BBLineSensor.Left) == 1) {
@@ -436,6 +434,16 @@ basic.forever(function () {
         }
     }
     while (mode == 4) {
-    	
+        if (true) {
+        	
+        } else if (false) {
+        	
+        } else if (false) {
+        	
+        } else if (false) {
+        	
+        } else {
+        	
+        }
     }
 })

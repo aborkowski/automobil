@@ -66,6 +66,8 @@ radio.onReceivedNumber(function (receivedNumber) {
         radio2(receivedNumber)
     } else if (receivedNumber == 8) {
         radio2(receivedNumber)
+    } else if (receivedNumber == 9) {
+        Variables()
     }
 })
 function lights_1 () {
@@ -78,7 +80,9 @@ function Snabbare () {
     mode = Speed + 10
 }
 touchbit.on(touchbit.TouchPad.b, touchbit.TouchEvent.pressed, function () {
-    radio.sendNumber(2)
+    if (lock == 1) {
+        radio.sendNumber(2)
+    }
 })
 function Lights_Backward () {
     for (let index = 0; index < 2; index++) {
@@ -106,19 +110,23 @@ function password () {
     user_key = temp
     serial.writeLine(user_key)
     if (user_key == key) {
-        basic.showNumber(secret)
+        basic.showIcon(IconNames.Yes)
+        basic.pause(2000)
+        basic.clearScreen()
+        radio.sendNumber(9)
+        lock = 1
     } else if (user_key.length > key.length) {
         basic.showIcon(IconNames.No)
         basic.pause(2000)
         basic.clearScreen()
         user_key = ""
-    } else {
-    	
     }
 }
 input.onButtonPressed(Button.A, function () {
-    temp = "" + Drive_Backwards_Left + "A"
-    basic.showString("A ")
+    temp = "" + user_key + "A"
+    basic.showString("A")
+    basic.pause(200)
+    basic.clearScreen()
     password()
 })
 function Line_followers () {
@@ -135,7 +143,9 @@ function Line_followers () {
     }
 }
 input.onGesture(Gesture.LogoUp, function () {
-    radio.sendNumber(2)
+    if (lock == 1) {
+        radio.sendNumber(2)
+    }
 })
 function Lights () {
     lights_1()
@@ -167,10 +177,14 @@ function Turn_Left () {
     bitbot.stop(BBStopMode.Brake)
 }
 touchbit.on(touchbit.TouchPad.d, touchbit.TouchEvent.pressed, function () {
-    radio.sendNumber(4)
+    if (lock == 1) {
+        radio.sendNumber(4)
+    }
 })
 input.onGesture(Gesture.TiltLeft, function () {
-    radio.sendNumber(1)
+    if (lock == 1) {
+        radio.sendNumber(1)
+    }
 })
 function Lights2 () {
     lights_6()
@@ -181,14 +195,20 @@ function Lights2 () {
     lights_1()
 }
 input.onGesture(Gesture.ScreenUp, function () {
-    radio.sendNumber(6)
-    basic.pause(5000)
+    if (lock == 1) {
+        radio.sendNumber(6)
+        basic.pause(5000)
+    }
 })
 touchbit.on(touchbit.TouchPad.right, touchbit.TouchEvent.pressed, function () {
-    radio.sendNumber(6)
+    if (lock == 1) {
+        radio.sendNumber(6)
+    }
 })
 touchbit.on(touchbit.TouchPad.left, touchbit.TouchEvent.pressed, function () {
-    radio.sendNumber(5)
+    if (lock == 1) {
+        radio.sendNumber(5)
+    }
 })
 function radio2 (receivedNumber: number) {
     if (receivedNumber == 1) {
@@ -274,14 +294,20 @@ function radio2 (receivedNumber: number) {
     }
 }
 input.onGesture(Gesture.ScreenDown, function () {
-    radio.sendNumber(5)
-    basic.pause(5000)
+    if (lock == 1) {
+        radio.sendNumber(5)
+        basic.pause(5000)
+    }
 })
 touchbit.on(touchbit.TouchPad.c, touchbit.TouchEvent.pressed, function () {
-    radio.sendNumber(3)
+    if (lock == 1) {
+        radio.sendNumber(3)
+    }
 })
 input.onButtonPressed(Button.AB, function () {
-    radio.sendNumber(7)
+    if (lock == 1) {
+        radio.sendNumber(7)
+    }
 })
 function lights_2 () {
     bitbot.setPixelColor(1, 0x659900)
@@ -290,12 +316,16 @@ function lights_2 () {
     bitbot.ledClear()
 }
 input.onButtonPressed(Button.B, function () {
-    temp = "" + Drive_Backwards_Left + "B"
-    basic.showString("B ")
+    temp = "" + user_key + "B"
+    basic.showString("B")
+    basic.pause(200)
+    basic.clearScreen()
     password()
 })
 input.onGesture(Gesture.Shake, function () {
-    radio.sendNumber(8)
+    if (lock == 1) {
+        radio.sendNumber(8)
+    }
 })
 function driveForward () {
     Lights_forward()
@@ -310,10 +340,14 @@ function driveForward () {
     bitbot.go(BBDirection.Forward, Speed)
 }
 input.onGesture(Gesture.TiltRight, function () {
-    radio.sendNumber(4)
+    if (lock == 1) {
+        radio.sendNumber(4)
+    }
 })
 input.onGesture(Gesture.LogoDown, function () {
-    radio.sendNumber(3)
+    if (lock == 1) {
+        radio.sendNumber(3)
+    }
 })
 function lights_5 () {
     bitbot.setPixelColor(4, 0x659900)
@@ -322,10 +356,14 @@ function lights_5 () {
     bitbot.ledClear()
 }
 touchbit.on(touchbit.TouchPad.a, touchbit.TouchEvent.pressed, function () {
-    radio.sendNumber(1)
+    if (lock == 1) {
+        radio.sendNumber(1)
+    }
 })
 input.onGesture(Gesture.ThreeG, function () {
-    basic.showString("Hello!")
+    if (lock == 1) {
+        radio.sendNumber(7)
+    }
 })
 function Turn_Backwards_Left () {
     bitbot.stop(BBStopMode.Brake)
@@ -396,6 +434,7 @@ function Variables () {
     Halt = 0
     Speed = 10
     Fjärrstyr = 0
+    lock = 1
 }
 let Fjärrstyr = 0
 let Halt = 0
@@ -406,31 +445,22 @@ let Drive_Backwards_Rights = 0
 let Backwards = 0
 let Drive_Backwards_Left = 0
 let temp = ""
+let lock = 0
 let Speed = 0
 let mode = 0
 let Led = 0
 let user_key = ""
 let key = ""
-let secret = 0
-secret = 1001
+let secret = 1001
 key = "ABBA"
 user_key = ""
 basic.forever(function () {
-	
-})
-basic.forever(function () {
-    while (Fjärrstyr == 0) {
-        if (bitbot.readLine(BBLineSensor.Left) == 1) {
-            Line_followers()
-        } else if (bitbot.readLine(BBLineSensor.Right) == 1) {
-            Line_followers()
-        } else if (bitbot.readLine(BBLineSensor.Left) == 0 == (bitbot.readLine(BBLineSensor.Right) == 0)) {
-            driveForward()
-        }
+    if (user_key.length == 0) {
+        led.toggle(4, 4)
+        basic.pause(500)
     }
 })
 basic.forever(function () {
-    let lock = 0
     while (lock == 1) {
         while (mode == 1) {
             if (Drive_Backwards_Left == 1) {
@@ -472,6 +502,15 @@ basic.forever(function () {
             	
             } else {
             	
+            }
+        }
+        while (Fjärrstyr == 0) {
+            if (bitbot.readLine(BBLineSensor.Left) == 1) {
+                Line_followers()
+            } else if (bitbot.readLine(BBLineSensor.Right) == 1) {
+                Line_followers()
+            } else if (bitbot.readLine(BBLineSensor.Left) == 0 == (bitbot.readLine(BBLineSensor.Right) == 0)) {
+                driveForward()
             }
         }
     }

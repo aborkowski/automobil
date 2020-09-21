@@ -393,6 +393,10 @@ function Variables () {
     Fjärrstyr = 0
 }
 basic.forever(function () {
+    led.toggle(4, 4)
+    basic.pause(200)
+})
+basic.forever(function () {
     while (Fjärrstyr == 0) {
         if (bitbot.readLine(BBLineSensor.Left) == 1) {
             Line_followers()

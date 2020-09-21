@@ -330,13 +330,6 @@ input.onGesture(Gesture.Shake, function () {
 function driveForward () {
     Lights_forward()
     basic.pause(100)
-    basic.showLeds(`
-        . . # . .
-        . # # # .
-        # # # # #
-        . . # . .
-        . . # . .
-        `)
     bitbot.go(BBDirection.Forward, Speed)
 }
 input.onGesture(Gesture.TiltRight, function () {
@@ -403,13 +396,6 @@ function Stop () {
 function Drive_Backwards () {
     Lights_Backward()
     basic.pause(100)
-    basic.showLeds(`
-        . . # . .
-        . . # . .
-        # # # # #
-        . # # # .
-        . . # . .
-        `)
     bitbot.go(BBDirection.Reverse, Speed)
 }
 function Lights_While_Line_folowers_on () {
@@ -456,7 +442,7 @@ key = "ABBA"
 user_key = ""
 basic.forever(function () {
     if (user_key.length == 0) {
-        led.toggle(4, 4)
+        led.toggle(0, 4)
         basic.pause(500)
     }
 })

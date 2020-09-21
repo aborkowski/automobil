@@ -1,17 +1,6 @@
 enum RadioMessage {
     message1 = 49434
 }
-let Led = 0
-let mode = 0
-let Speed = 0
-let Drive_Backwards_Left = 0
-let Backwards = 0
-let Drive_Backwards_Rights = 0
-let Drive_Forwords_Left = 0
-let Drive_Forwords = 0
-let Drive_Forwords_Rights = 0
-let Halt = 0
-let Fjärrstyr = 0
 function Turn_Right () {
     bitbot.stop(BBStopMode.Brake)
     for (let index = 0; index < 2; index++) {
@@ -113,9 +102,24 @@ function lights_3 () {
     basic.pause(200)
     bitbot.ledClear()
 }
+function password () {
+    user_key = temp
+    serial.writeLine(user_key)
+    if (user_key == key) {
+        basic.showNumber(secret)
+    } else if (user_key.length > key.length) {
+        basic.showIcon(IconNames.No)
+        basic.pause(2000)
+        basic.clearScreen()
+        user_key = ""
+    } else {
+    	
+    }
+}
 input.onButtonPressed(Button.A, function () {
-    radio.sendNumber(5)
-    basic.pause(5000)
+    temp = "" + Drive_Backwards_Left + "A"
+    basic.showString("A ")
+    password()
 })
 function Line_followers () {
     for (let index = 0; index < 1e+103; index++) {
@@ -286,8 +290,9 @@ function lights_2 () {
     bitbot.ledClear()
 }
 input.onButtonPressed(Button.B, function () {
-    radio.sendNumber(6)
-    basic.pause(5000)
+    temp = "" + Drive_Backwards_Left + "B"
+    basic.showString("B ")
+    password()
 })
 input.onGesture(Gesture.Shake, function () {
     radio.sendNumber(8)
@@ -392,9 +397,26 @@ function Variables () {
     Speed = 10
     Fjärrstyr = 0
 }
+let Fjärrstyr = 0
+let Halt = 0
+let Drive_Forwords_Rights = 0
+let Drive_Forwords = 0
+let Drive_Forwords_Left = 0
+let Drive_Backwards_Rights = 0
+let Backwards = 0
+let Drive_Backwards_Left = 0
+let temp = ""
+let Speed = 0
+let mode = 0
+let Led = 0
+let user_key = ""
+let key = ""
+let secret = 0
+secret = 1001
+key = "ABBA"
+user_key = ""
 basic.forever(function () {
-    led.toggle(4, 4)
-    basic.pause(200)
+	
 })
 basic.forever(function () {
     while (Fjärrstyr == 0) {
@@ -408,46 +430,49 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    while (mode == 1) {
-        if (Drive_Backwards_Left == 1) {
-            Turn_Backwards_Left()
-        } else if (Backwards == 1) {
-            Drive_Backwards()
-        } else if (Drive_Backwards_Rights == 1) {
-            Turn_Backwards_Right()
-        } else if (Halt == 1) {
-            Stop()
+    let lock = 0
+    while (lock == 1) {
+        while (mode == 1) {
+            if (Drive_Backwards_Left == 1) {
+                Turn_Backwards_Left()
+            } else if (Backwards == 1) {
+                Drive_Backwards()
+            } else if (Drive_Backwards_Rights == 1) {
+                Turn_Backwards_Right()
+            } else if (Halt == 1) {
+                Stop()
+            }
         }
-    }
-    while (mode == 2) {
-        if (Drive_Forwords_Left == 1) {
-            Turn_Left()
-        } else if (Drive_Forwords == 1) {
-            driveForward()
-        } else if (Drive_Forwords_Rights == 1) {
-            Turn_Right()
-        } else if (Halt == 1) {
-            Stop()
+        while (mode == 2) {
+            if (Drive_Forwords_Left == 1) {
+                Turn_Left()
+            } else if (Drive_Forwords == 1) {
+                driveForward()
+            } else if (Drive_Forwords_Rights == 1) {
+                Turn_Right()
+            } else if (Halt == 1) {
+                Stop()
+            }
         }
-    }
-    while (mode == 3) {
-        if (Fjärrstyr == 0) {
-        	
-        } else if (Fjärrstyr == 1) {
-        	
+        while (mode == 3) {
+            if (Fjärrstyr == 0) {
+            	
+            } else if (Fjärrstyr == 1) {
+            	
+            }
         }
-    }
-    while (mode == 4) {
-        if (true) {
-        	
-        } else if (false) {
-        	
-        } else if (false) {
-        	
-        } else if (false) {
-        	
-        } else {
-        	
+        while (mode == 4) {
+            if (true) {
+            	
+            } else if (false) {
+            	
+            } else if (false) {
+            	
+            } else if (false) {
+            	
+            } else {
+            	
+            }
         }
     }
 })

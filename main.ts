@@ -183,8 +183,13 @@ function Server () {
     }
 }
 input.onButtonPressed(Button.A, function () {
+    basic.pause(1000)
     basic.clearScreen()
     temp = "" + user_key + "A"
+    control.waitMicros(1000)
+    basic.showString("A")
+    basic.pause(1000)
+    basic.clearScreen()
     password()
 })
 function Line_followers () {
@@ -374,8 +379,13 @@ function lights_2 () {
     bitbot.ledClear()
 }
 input.onButtonPressed(Button.B, function () {
+    basic.pause(1000)
     basic.clearScreen()
     temp = "" + user_key + "B"
+    control.waitMicros(1000)
+    basic.showString("B")
+    basic.pause(1000)
+    basic.clearScreen()
     password()
 })
 input.onGesture(Gesture.Shake, function () {

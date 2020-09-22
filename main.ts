@@ -113,13 +113,72 @@ function password () {
         basic.showIcon(IconNames.Yes)
         basic.pause(2000)
         basic.clearScreen()
-        radio.sendNumber(9)
+        if (0 == 0) {
+            radio.sendNumber(9)
+        }
         lock = 1
+        control.waitMicros(200)
+        user_key = ""
     } else if (user_key.length > key.length) {
         basic.showIcon(IconNames.No)
         basic.pause(2000)
         basic.clearScreen()
         user_key = ""
+    }
+}
+function Server () {
+    while (lock == 1) {
+        while (mode == 1) {
+            if (Drive_Backwards_Left == 1) {
+                Turn_Backwards_Left()
+            } else if (Backwards == 1) {
+                Drive_Backwards()
+            } else if (Drive_Backwards_Rights == 1) {
+                Turn_Backwards_Right()
+            } else if (Halt == 1) {
+                Stop()
+            }
+        }
+        while (mode == 2) {
+            if (Drive_Forwords_Left == 1) {
+                Turn_Left()
+            } else if (Drive_Forwords == 1) {
+                driveForward()
+            } else if (Drive_Forwords_Rights == 1) {
+                Turn_Right()
+            } else if (Halt == 1) {
+                Stop()
+            }
+        }
+        while (mode == 3) {
+            if (Fjärrstyr == 0) {
+            	
+            } else if (Fjärrstyr == 1) {
+            	
+            }
+        }
+        while (mode == 4) {
+            if (true) {
+            	
+            } else if (false) {
+            	
+            } else if (false) {
+            	
+            } else if (false) {
+            	
+            } else {
+            	
+            }
+        }
+        while (Fjärrstyr == 0) {
+            if (bitbot.readLine(BBLineSensor.Left) == 1) {
+                Line_followers()
+            } else if (bitbot.readLine(BBLineSensor.Right) == 1) {
+                Line_followers()
+            } else if (bitbot.readLine(BBLineSensor.Left) == 0 == (bitbot.readLine(BBLineSensor.Right) == 0)) {
+                driveForward()
+            }
+        }
     }
 }
 input.onButtonPressed(Button.A, function () {
@@ -423,10 +482,10 @@ function Variables () {
     lock = 1
 }
 let Fjärrstyr = 0
-let Halt = 0
 let Drive_Forwords_Rights = 0
 let Drive_Forwords = 0
 let Drive_Forwords_Left = 0
+let Halt = 0
 let Drive_Backwards_Rights = 0
 let Backwards = 0
 let Drive_Backwards_Left = 0
@@ -447,57 +506,5 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    while (lock == 1) {
-        while (mode == 1) {
-            if (Drive_Backwards_Left == 1) {
-                Turn_Backwards_Left()
-            } else if (Backwards == 1) {
-                Drive_Backwards()
-            } else if (Drive_Backwards_Rights == 1) {
-                Turn_Backwards_Right()
-            } else if (Halt == 1) {
-                Stop()
-            }
-        }
-        while (mode == 2) {
-            if (Drive_Forwords_Left == 1) {
-                Turn_Left()
-            } else if (Drive_Forwords == 1) {
-                driveForward()
-            } else if (Drive_Forwords_Rights == 1) {
-                Turn_Right()
-            } else if (Halt == 1) {
-                Stop()
-            }
-        }
-        while (mode == 3) {
-            if (Fjärrstyr == 0) {
-            	
-            } else if (Fjärrstyr == 1) {
-            	
-            }
-        }
-        while (mode == 4) {
-            if (true) {
-            	
-            } else if (false) {
-            	
-            } else if (false) {
-            	
-            } else if (false) {
-            	
-            } else {
-            	
-            }
-        }
-        while (Fjärrstyr == 0) {
-            if (bitbot.readLine(BBLineSensor.Left) == 1) {
-                Line_followers()
-            } else if (bitbot.readLine(BBLineSensor.Right) == 1) {
-                Line_followers()
-            } else if (bitbot.readLine(BBLineSensor.Left) == 0 == (bitbot.readLine(BBLineSensor.Right) == 0)) {
-                driveForward()
-            }
-        }
-    }
+    Server()
 })

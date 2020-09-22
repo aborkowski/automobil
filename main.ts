@@ -118,12 +118,13 @@ function password () {
         }
         lock = 1
         control.waitMicros(200)
-        user_key = ""
     } else if (user_key.length > key.length) {
-        basic.showIcon(IconNames.No)
-        basic.pause(2000)
-        basic.clearScreen()
-        user_key = ""
+        if (lock == 0) {
+            basic.showIcon(IconNames.No)
+            basic.pause(2000)
+            basic.clearScreen()
+            user_key = ""
+        }
     }
 }
 function Server () {
@@ -182,10 +183,8 @@ function Server () {
     }
 }
 input.onButtonPressed(Button.A, function () {
-    temp = "" + user_key + "A"
-    basic.showString("A")
-    basic.pause(200)
     basic.clearScreen()
+    temp = "" + user_key + "A"
     password()
 })
 function Line_followers () {
@@ -375,10 +374,8 @@ function lights_2 () {
     bitbot.ledClear()
 }
 input.onButtonPressed(Button.B, function () {
-    temp = "" + user_key + "B"
-    basic.showString("B")
-    basic.pause(200)
     basic.clearScreen()
+    temp = "" + user_key + "B"
     password()
 })
 input.onGesture(Gesture.Shake, function () {
@@ -502,6 +499,9 @@ user_key = ""
 basic.forever(function () {
     if (user_key.length == 0) {
         led.toggle(0, 4)
+        led.toggle(1, 4)
+        led.toggle(2, 4)
+        led.toggle(3, 4)
         basic.pause(500)
     }
 })

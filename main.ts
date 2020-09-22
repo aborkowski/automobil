@@ -183,10 +183,9 @@ function Server () {
     }
 }
 input.onButtonPressed(Button.A, function () {
-    basic.pause(1000)
-    basic.clearScreen()
     temp = "" + user_key + "A"
-    control.waitMicros(1000)
+    basic.clearScreen()
+    basic.pause(1000)
     basic.showString("A")
     basic.pause(1000)
     basic.clearScreen()

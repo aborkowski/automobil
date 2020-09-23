@@ -111,20 +111,29 @@ function password () {
     serial.writeLine(user_key)
     if (user_key == key) {
         basic.showIcon(IconNames.Yes)
-        basic.pause(2000)
+        basic.pause(1000)
         basic.clearScreen()
-        if (0 == 0) {
+        if (lock == 0) {
             radio.sendNumber(9)
         }
+        basic.pause(200)
         lock = 1
-        control.waitMicros(200)
-    } else if (user_key.length > key.length) {
+    } else if (user_key.length > Hand.length || user_key.length > key.length) {
         if (lock == 0) {
             basic.showIcon(IconNames.No)
             basic.pause(2000)
             basic.clearScreen()
             user_key = ""
         }
+    } else if (user_key == Hand) {
+        basic.showIcon(IconNames.Yes)
+        basic.pause(2000)
+        basic.clearScreen()
+        if (lock == 0) {
+            radio.sendNumber(9)
+        }
+        basic.pause(200)
+        lock = 1
     }
 }
 function Server () {
@@ -185,7 +194,6 @@ function Server () {
 input.onButtonPressed(Button.A, function () {
     temp = "" + user_key + "A"
     basic.clearScreen()
-    basic.pause(1000)
     basic.showString("A")
     basic.pause(1000)
     basic.clearScreen()
@@ -501,9 +509,10 @@ let Speed = 0
 let mode = 0
 let Led = 0
 let user_key = ""
+let Hand = ""
 let key = ""
-let secret = 1001
 key = "ABBA"
+Hand = "BAAB"
 user_key = ""
 basic.forever(function () {
     if (user_key.length == 0) {

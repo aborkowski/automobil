@@ -79,11 +79,6 @@ function lights_1 () {
 function Snabbare () {
     mode = Speed + 10
 }
-touchbit.on(touchbit.TouchPad.b, touchbit.TouchEvent.pressed, function () {
-    if (lock == 1) {
-        radio.sendNumber(2)
-    }
-})
 function Lights_Backward () {
     for (let index = 0; index < 2; index++) {
         Lights2()
@@ -105,36 +100,6 @@ function lights_3 () {
     bitbot.setPixelColor(8, 0x659900)
     basic.pause(200)
     bitbot.ledClear()
-}
-function password () {
-    user_key = temp
-    serial.writeLine(user_key)
-    if (user_key == key) {
-        basic.showIcon(IconNames.Yes)
-        basic.pause(1000)
-        basic.clearScreen()
-        if (lock == 0) {
-            radio.sendNumber(9)
-        }
-        basic.pause(200)
-        lock = 1
-    } else if (user_key.length > Hand.length || user_key.length > key.length) {
-        if (lock == 0) {
-            basic.showIcon(IconNames.No)
-            basic.pause(2000)
-            basic.clearScreen()
-            user_key = ""
-        }
-    } else if (user_key == Hand) {
-        basic.showIcon(IconNames.Yes)
-        basic.pause(2000)
-        basic.clearScreen()
-        if (lock == 0) {
-            radio.sendNumber(9)
-        }
-        basic.pause(200)
-        lock = 1
-    }
 }
 function Server () {
     while (lock == 1) {
@@ -191,14 +156,6 @@ function Server () {
         }
     }
 }
-input.onButtonPressed(Button.A, function () {
-    temp = "" + user_key + "A"
-    basic.clearScreen()
-    basic.showString("A")
-    basic.pause(1000)
-    basic.clearScreen()
-    password()
-})
 function Line_followers () {
     for (let index = 0; index < 1e+103; index++) {
         if (bitbot.readLine(BBLineSensor.Left) == 1) {
@@ -246,11 +203,6 @@ function Turn_Left () {
     basic.pause(1000)
     bitbot.stop(BBStopMode.Brake)
 }
-touchbit.on(touchbit.TouchPad.d, touchbit.TouchEvent.pressed, function () {
-    if (lock == 1) {
-        radio.sendNumber(4)
-    }
-})
 input.onGesture(Gesture.TiltLeft, function () {
     if (lock == 1) {
         radio.sendNumber(1)
@@ -268,16 +220,6 @@ input.onGesture(Gesture.ScreenUp, function () {
     if (lock == 1) {
         radio.sendNumber(6)
         basic.pause(5000)
-    }
-})
-touchbit.on(touchbit.TouchPad.right, touchbit.TouchEvent.pressed, function () {
-    if (lock == 1) {
-        radio.sendNumber(6)
-    }
-})
-touchbit.on(touchbit.TouchPad.left, touchbit.TouchEvent.pressed, function () {
-    if (lock == 1) {
-        radio.sendNumber(5)
     }
 })
 function radio2 (receivedNumber: number) {
@@ -369,11 +311,6 @@ input.onGesture(Gesture.ScreenDown, function () {
         basic.pause(5000)
     }
 })
-touchbit.on(touchbit.TouchPad.c, touchbit.TouchEvent.pressed, function () {
-    if (lock == 1) {
-        radio.sendNumber(3)
-    }
-})
 input.onButtonPressed(Button.AB, function () {
     if (lock == 1) {
         radio.sendNumber(7)
@@ -385,16 +322,6 @@ function lights_2 () {
     basic.pause(200)
     bitbot.ledClear()
 }
-input.onButtonPressed(Button.B, function () {
-    basic.pause(1000)
-    basic.clearScreen()
-    temp = "" + user_key + "B"
-    control.waitMicros(1000)
-    basic.showString("B")
-    basic.pause(1000)
-    basic.clearScreen()
-    password()
-})
 input.onGesture(Gesture.Shake, function () {
     if (lock == 1) {
         radio.sendNumber(8)
@@ -421,11 +348,6 @@ function lights_5 () {
     basic.pause(200)
     bitbot.ledClear()
 }
-touchbit.on(touchbit.TouchPad.a, touchbit.TouchEvent.pressed, function () {
-    if (lock == 1) {
-        radio.sendNumber(1)
-    }
-})
 input.onGesture(Gesture.ThreeG, function () {
     if (lock == 1) {
         radio.sendNumber(7)
@@ -503,18 +425,13 @@ let Halt = 0
 let Drive_Backwards_Rights = 0
 let Backwards = 0
 let Drive_Backwards_Left = 0
-let temp = ""
 let lock = 0
 let Speed = 0
 let mode = 0
 let Led = 0
-let user_key = ""
-let Hand = ""
-let key = ""
-key = "ABBA"
-Hand = "BAAB"
-user_key = ""
+radio.setGroup(1)
 basic.forever(function () {
+    let user_key = ""
     if (user_key.length == 0) {
         led.toggle(0, 4)
         led.toggle(1, 4)

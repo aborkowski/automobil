@@ -152,85 +152,87 @@ function Lights2 () {
     lights_1()
 }
 function radio2 (receivedNumber: number) {
-    if (receivedNumber == 1) {
-        if (mode == 1) {
-            Drive_Forwords_Left = 1
-        } else if (mode == 2) {
-            Drive_Backwards_Left = 1
-        } else if (mode == 3) {
-            Fjärrstyr = 1
-        } else if (mode == 4) {
-            mode = 0
-        }
-    } else if (receivedNumber == 2) {
-        if (mode == 1) {
-            Drive_Forwords = 1
-        } else if (mode == 2) {
-            Backwards = 1
-        } else if (mode == 3) {
-            Halt = 1
-        } else if (mode == 4) {
-            mode = 1
-        }
-    } else if (receivedNumber == 3) {
-        if (mode == 1) {
-            Halt = 1
-        } else if (mode == 2) {
-            Halt = 1
-        } else if (mode == 3) {
-        	
-        } else if (mode == 4) {
-            mode = 2
-        }
-    } else if (receivedNumber == 4) {
-        if (mode == 1) {
-            Drive_Forwords_Rights = 1
-        } else if (mode == 2) {
-            Drive_Backwards_Rights = 1
-        } else if (mode == 3) {
-            Fjärrstyr = 0
-        } else if (mode == 4) {
-            mode = 3
-        }
-    } else if (receivedNumber == 5) {
-        if (mode == 1) {
-            mode = 4
-        } else if (mode == 2) {
-            mode = 1
-        } else if (mode == 3) {
-            mode = 2
-        } else if (mode == 4) {
-            mode = 3
-        }
-    } else if (receivedNumber == 6) {
-        if (mode == 1) {
-            mode = 2
-        } else if (mode == 2) {
-            mode = 3
-        } else if (mode == 3) {
-            mode = 4
-        } else if (mode == 4) {
-            mode = 1
-        }
-    } else if (receivedNumber == 7) {
-        if (mode == 1) {
-        	
-        } else if (mode == 2) {
-        	
-        } else if (mode == 3) {
-        	
-        } else if (mode == 4) {
-            control.reset()
-        }
-    } else if (receivedNumber == 8) {
-        if (mode == 1) {
-            Speed = 1
-        } else if (mode == 2) {
-            Speed = 1
-        } else if (mode == 3) {
-            Speed = 1
-        } else if (mode == 4) {
-        	
+    while (lock == 1) {
+        if (receivedNumber == 1) {
+            if (mode == 1) {
+                Turn_Left()
+            } else if (mode == 2) {
+                Turn_Backwards_Left()
+            } else if (mode == 3) {
+            	
+            } else if (mode == 4) {
+            	
+            }
+        } else if (receivedNumber == 2) {
+            if (mode == 1) {
+                Drive_Forwords = 1
+            } else if (mode == 2) {
+                Backwards = 1
+            } else if (mode == 3) {
+                Halt = 1
+            } else if (mode == 4) {
+                mode = 1
+            }
+        } else if (receivedNumber == 3) {
+            if (mode == 1) {
+                Halt = 1
+            } else if (mode == 2) {
+                Halt = 1
+            } else if (mode == 3) {
+            	
+            } else if (mode == 4) {
+                mode = 2
+            }
+        } else if (receivedNumber == 4) {
+            if (mode == 1) {
+                Drive_Forwords_Rights = 1
+            } else if (mode == 2) {
+                Drive_Backwards_Rights = 1
+            } else if (mode == 3) {
+                Fjärrstyr = 0
+            } else if (mode == 4) {
+                mode = 3
+            }
+        } else if (receivedNumber == 5) {
+            if (mode == 1) {
+                mode = 4
+            } else if (mode == 2) {
+                mode = 1
+            } else if (mode == 3) {
+                mode = 2
+            } else if (mode == 4) {
+                mode = 3
+            }
+        } else if (receivedNumber == 6) {
+            if (mode == 1) {
+                mode = 2
+            } else if (mode == 2) {
+                mode = 3
+            } else if (mode == 3) {
+                mode = 4
+            } else if (mode == 4) {
+                mode = 1
+            }
+        } else if (receivedNumber == 7) {
+            if (mode == 1) {
+            	
+            } else if (mode == 2) {
+            	
+            } else if (mode == 3) {
+            	
+            } else if (mode == 4) {
+                control.reset()
+            }
+        } else if (receivedNumber == 8) {
+            if (mode == 1) {
+                Speed = 1
+            } else if (mode == 2) {
+                Speed = 1
+            } else if (mode == 3) {
+                Speed = 1
+            } else if (mode == 4) {
+            	
+            }
         }
     }
 }
@@ -314,25 +316,22 @@ function Variables () {
     Speed = 10
     Fjärrstyr = 0
     lock = 1
-    lock = 4
+    mode = 4
 }
 let Line = 0
-let lock = 0
+let Drive_Forwords_Left = 0
+let Drive_Backwards_Left = 0
+let Fjärrstyr = 0
 let Drive_Backwards_Rights = 0
 let Drive_Forwords_Rights = 0
 let Halt = 0
 let Backwards = 0
 let Drive_Forwords = 0
-let Fjärrstyr = 0
-let Drive_Backwards_Left = 0
-let Drive_Forwords_Left = 0
+let lock = 0
 let Speed = 0
 let mode = 0
 let Led = 0
 radio.setGroup(1)
-basic.forever(function () {
-	
-})
 basic.forever(function () {
     while (lock == 1) {
         while (mode == 2) {

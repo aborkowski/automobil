@@ -50,7 +50,6 @@ function lights_6 () {
     bitbot.ledClear()
 }
 radio.onReceivedNumber(function (receivedNumber) {
-    basic.showNumber(receivedNumber)
     if (receivedNumber == 1) {
         radio2(receivedNumber)
     } else if (receivedNumber == 2) {
@@ -153,6 +152,7 @@ function Lights2 () {
     lights_1()
 }
 function radio2 (receivedNumber: number) {
+    basic.showNumber(receivedNumber)
     if (receivedNumber == 1) {
         if (mode == 1) {
             lock = 0

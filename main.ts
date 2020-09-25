@@ -152,12 +152,11 @@ function Lights2 () {
     lights_1()
 }
 function radio2 (receivedNumber: number) {
-    basic.showNumber(receivedNumber)
     if (receivedNumber == 1) {
         if (mode == 1) {
-            lock = 0
+            Drive_Forwords_Left = 1
         } else if (mode == 2) {
-            lock = 0
+            Drive_Backwards_Left = 1
         } else if (mode == 3) {
             Fjärrstyr = 1
         } else if (mode == 4) {
@@ -165,9 +164,9 @@ function radio2 (receivedNumber: number) {
         }
     } else if (receivedNumber == 2) {
         if (mode == 1) {
-            lock = 0
+            Drive_Forwords = 1
         } else if (mode == 2) {
-            lock = 0
+            Backwards = 1
         } else if (mode == 3) {
             Halt = 1
         } else if (mode == 4) {
@@ -175,9 +174,9 @@ function radio2 (receivedNumber: number) {
         }
     } else if (receivedNumber == 3) {
         if (mode == 1) {
-            lock = 0
+            Halt = 1
         } else if (mode == 2) {
-            lock = 0
+            Halt = 1
         } else if (mode == 3) {
         	
         } else if (mode == 4) {
@@ -185,9 +184,9 @@ function radio2 (receivedNumber: number) {
         }
     } else if (receivedNumber == 4) {
         if (mode == 1) {
-            lock = 0
+            Drive_Forwords_Rights = 1
         } else if (mode == 2) {
-            lock = 0
+            Drive_Backwards_Rights = 1
         } else if (mode == 3) {
             Fjärrstyr = 0
         } else if (mode == 4) {
@@ -195,7 +194,7 @@ function radio2 (receivedNumber: number) {
         }
     } else if (receivedNumber == 5) {
         if (mode == 1) {
-            lock = 4
+            mode = 4
         } else if (mode == 2) {
             mode = 1
         } else if (mode == 3) {
@@ -215,9 +214,9 @@ function radio2 (receivedNumber: number) {
         }
     } else if (receivedNumber == 7) {
         if (mode == 1) {
-            lock = 0
+        	
         } else if (mode == 2) {
-            lock = 0
+        	
         } else if (mode == 3) {
         	
         } else if (mode == 4) {
@@ -225,9 +224,9 @@ function radio2 (receivedNumber: number) {
         }
     } else if (receivedNumber == 8) {
         if (mode == 1) {
-            lock = 0
+            Speed = 1
         } else if (mode == 2) {
-            lock = 0
+            Speed = 1
         } else if (mode == 3) {
             Speed = 1
         } else if (mode == 4) {
@@ -317,15 +316,16 @@ function Variables () {
     lock = 1
     lock = 4
 }
-let Drive_Forwords_Rights = 0
-let Drive_Forwords = 0
-let Drive_Forwords_Left = 0
-let Drive_Backwards_Rights = 0
-let Backwards = 0
-let Drive_Backwards_Left = 0
-let Halt = 0
-let Fjärrstyr = 0
+let Line = 0
 let lock = 0
+let Drive_Backwards_Rights = 0
+let Drive_Forwords_Rights = 0
+let Halt = 0
+let Backwards = 0
+let Drive_Forwords = 0
+let Fjärrstyr = 0
+let Drive_Backwards_Left = 0
+let Drive_Forwords_Left = 0
 let Speed = 0
 let mode = 0
 let Led = 0
@@ -335,7 +335,7 @@ basic.forever(function () {
 })
 basic.forever(function () {
     while (lock == 1) {
-        while (mode == 1) {
+        while (mode == 2) {
             if (Drive_Backwards_Left == 1) {
                 Turn_Backwards_Left()
             } else if (Backwards == 1) {
@@ -346,7 +346,7 @@ basic.forever(function () {
                 Stop()
             }
         }
-        while (mode == 2) {
+        while (mode == 1) {
             if (Drive_Forwords_Left == 1) {
                 Turn_Left()
             } else if (Drive_Forwords == 1) {
@@ -359,12 +359,12 @@ basic.forever(function () {
         }
         while (mode == 3) {
             if (Fjärrstyr == 0) {
-            	
+                Line = 0
             } else if (Fjärrstyr == 1) {
-            	
+                Line = 1
             }
         }
-        while (Fjärrstyr == 1) {
+        while (Line == 1) {
             if (bitbot.readLine(BBLineSensor.Left) == 1) {
                 Line_followers()
             } else if (bitbot.readLine(BBLineSensor.Right) == 1) {

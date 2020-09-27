@@ -65,8 +65,10 @@ radio.onReceivedNumber(function (receivedNumber) {
     } else if (receivedNumber == 7) {
         radio2(receivedNumber)
     } else if (receivedNumber == 8) {
+        basic.showNumber(2)
         Variables()
     }
+    basic.showNumber(1)
 })
 function lights_1 () {
     bitbot.setPixelColor(0, 0x659900)
@@ -151,6 +153,7 @@ function Lights2 () {
 }
 function radio2 (receivedNumber: number) {
     while (lock == 1) {
+        basic.showNumber(4)
         if (receivedNumber == 1) {
             if (mode == 1) {
                 Turn_Left()
@@ -294,6 +297,7 @@ function Lights_While_Line_folowers_on () {
         `)
 }
 function Variables () {
+    basic.showNumber(3)
     Drive_Backwards_Left = 0
     Backwards = 0
     Drive_Backwards_Rights = 0
@@ -315,11 +319,12 @@ let Drive_Forwords_Rights = 0
 let Halt = 0
 let Backwards = 0
 let Drive_Forwords = 0
-let lock = 0
 let Speed = 0
 let mode = 0
 let Led = 0
+let lock = 0
 radio.setGroup(1)
+lock = 1
 basic.forever(function () {
     while (lock == 1) {
         while (mode == 2) {

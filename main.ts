@@ -65,8 +65,6 @@ radio.onReceivedNumber(function (receivedNumber) {
     } else if (receivedNumber == 7) {
         radio2(receivedNumber)
     } else if (receivedNumber == 8) {
-        radio2(receivedNumber)
-    } else if (receivedNumber == 9) {
         Variables()
     }
 })
@@ -215,23 +213,13 @@ function radio2 (receivedNumber: number) {
             }
         } else if (receivedNumber == 7) {
             if (mode == 1) {
-            	
+                Speed = 1
             } else if (mode == 2) {
-            	
+                Speed = 1
             } else if (mode == 3) {
-            	
+                Speed = 1
             } else if (mode == 4) {
                 control.reset()
-            }
-        } else if (receivedNumber == 8) {
-            if (mode == 1) {
-                Speed = 1
-            } else if (mode == 2) {
-                Speed = 1
-            } else if (mode == 3) {
-                Speed = 1
-            } else if (mode == 4) {
-            	
             }
         }
     }

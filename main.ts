@@ -66,9 +66,7 @@ radio.onReceivedNumber(function (receivedNumber) {
         radio2(receivedNumber)
     } else if (receivedNumber == 8) {
         Variables()
-        basic.showNumber(2)
     }
-    basic.showNumber(1)
 })
 function lights_1 () {
     bitbot.setPixelColor(0, 0x659900)

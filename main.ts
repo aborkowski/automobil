@@ -50,7 +50,9 @@ function lights_6 () {
     bitbot.ledClear()
 }
 radio.onReceivedNumber(function (receivedNumber) {
+    basic.showNumber(1)
     if (receivedNumber == 1) {
+        basic.showNumber(4)
         radio2(receivedNumber)
     } else if (receivedNumber == 2) {
         radio2(receivedNumber)
@@ -65,6 +67,7 @@ radio.onReceivedNumber(function (receivedNumber) {
     } else if (receivedNumber == 7) {
         radio2(receivedNumber)
     } else if (receivedNumber == 8) {
+        basic.showNumber(2)
         Variables()
     }
 })
@@ -151,7 +154,7 @@ function Lights2 () {
 }
 function radio2 (receivedNumber: number) {
     while (lock == 1) {
-        basic.showNumber(4)
+        basic.showNumber(5)
         if (receivedNumber == 1) {
             if (mode == 1) {
                 Turn_Left()
@@ -160,7 +163,7 @@ function radio2 (receivedNumber: number) {
             } else if (mode == 3) {
             	
             } else if (mode == 4) {
-            	
+                basic.showNumber(6)
             }
         } else if (receivedNumber == 2) {
             if (mode == 1) {
@@ -338,7 +341,7 @@ let mode = 0
 let Led = 0
 radio.setGroup(1)
 I()
-control.inBackground(function () {
+basic.forever(function () {
     while (lock == 1) {
         while (mode == 2) {
             if (Drive_Backwards_Left == 1) {

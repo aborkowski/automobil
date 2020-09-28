@@ -103,7 +103,7 @@ function lights_3 () {
     bitbot.ledClear()
 }
 input.onButtonPressed(Button.A, function () {
-    radio.sendNumber(8)
+    radio2(1)
 })
 function Line_followers () {
     for (let index = 0; index < 1e+103; index++) {
@@ -231,6 +231,9 @@ function radio2 (receivedNumber: number) {
         }
     }
 }
+input.onButtonPressed(Button.AB, function () {
+    Variables()
+})
 function I () {
     Drive_Backwards_Left = 0
     Backwards = 0
@@ -252,7 +255,7 @@ function lights_2 () {
     bitbot.ledClear()
 }
 input.onButtonPressed(Button.B, function () {
-    radio.sendNumber(1)
+    radio2(1)
 })
 function driveForward () {
     Lights_forward()
@@ -319,6 +322,7 @@ function Lights_While_Line_folowers_on () {
 }
 function Variables () {
     basic.showNumber(3)
+    music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.Once)
     Drive_Backwards_Left = 0
     Backwards = 0
     Drive_Backwards_Rights = 0

@@ -54,7 +54,7 @@ radio.onReceivedNumber(function (receivedNumber) {
     if (receivedNumber == 8) {
         basic.showNumber(2)
         Variables()
-    } else if (lock == 1) {
+    } else if (lock == 1 && (receivedNumber == 1 || receivedNumber == 2 || (receivedNumber == 3 || receivedNumber == 4) || (receivedNumber == 5 || receivedNumber == 6 || receivedNumber == 7))) {
         basic.showNumber(5)
         if (receivedNumber == 1) {
             if (mode == 1) {
@@ -160,9 +160,6 @@ function lights_3 () {
     basic.pause(200)
     bitbot.ledClear()
 }
-input.onButtonPressed(Button.A, function () {
-	
-})
 function Line_followers () {
     for (let index = 0; index < 1e+103; index++) {
         if (bitbot.readLine(BBLineSensor.Left) == 1) {
@@ -213,9 +210,6 @@ function Lights2 () {
     lights_2()
     lights_1()
 }
-input.onButtonPressed(Button.AB, function () {
-    Variables()
-})
 function I () {
     Drive_Backwards_Left = 0
     Backwards = 0
@@ -236,9 +230,6 @@ function lights_2 () {
     basic.pause(200)
     bitbot.ledClear()
 }
-input.onButtonPressed(Button.B, function () {
-	
-})
 function driveForward () {
     Lights_forward()
     basic.pause(100)

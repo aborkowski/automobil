@@ -68,19 +68,19 @@ radio.onReceivedNumber(function (receivedNumber) {
             }
         } else if (receivedNumber == 2) {
             if (mode == 1) {
-                Drive_Forwords = 1
+                driveForward()
             } else if (mode == 2) {
-                Backwards = 1
+                Drive_Backwards()
             } else if (mode == 3) {
-                Halt = 1
+                Stop()
             } else if (mode == 4) {
                 mode = 1
             }
         } else if (receivedNumber == 3) {
             if (mode == 1) {
-                Halt = 1
+                Stop()
             } else if (mode == 2) {
-                Halt = 1
+                Stop()
             } else if (mode == 3) {
             	
             } else if (mode == 4) {
@@ -88,9 +88,9 @@ radio.onReceivedNumber(function (receivedNumber) {
             }
         } else if (receivedNumber == 4) {
             if (mode == 1) {
-                Drive_Forwords_Rights = 1
+                Turn_Right()
             } else if (mode == 2) {
-                Drive_Backwards_Rights = 1
+                Turn_Backwards_Right()
             } else if (mode == 3) {
                 Fjärrstyr = 0
             } else if (mode == 4) {
@@ -118,11 +118,11 @@ radio.onReceivedNumber(function (receivedNumber) {
             }
         } else if (receivedNumber == 7) {
             if (mode == 1) {
-                Speed = 1
+                Snabbare()
             } else if (mode == 2) {
-                Speed = 1
+                Snabbare()
             } else if (mode == 3) {
-                Speed = 1
+                Snabbare()
             } else if (mode == 4) {
                 control.reset()
             }
@@ -310,15 +310,15 @@ function Variables () {
     Line = 0
 }
 let Line = 0
+let Halt = 0
+let Drive_Forwords_Rights = 0
+let Drive_Forwords = 0
 let Drive_Forwords_Left = 0
+let Drive_Backwards_Rights = 0
+let Backwards = 0
 let Drive_Backwards_Left = 0
 let Speed = 0
 let Fjärrstyr = 0
-let Drive_Backwards_Rights = 0
-let Drive_Forwords_Rights = 0
-let Halt = 0
-let Backwards = 0
-let Drive_Forwords = 0
 let mode = 0
 let lock = 0
 let Led = 0
@@ -326,28 +326,6 @@ radio.setGroup(1)
 I()
 basic.forever(function () {
     while (lock == 1) {
-        while (mode == 2) {
-            if (Drive_Backwards_Left == 1) {
-                Turn_Backwards_Left()
-            } else if (Backwards == 1) {
-                Drive_Backwards()
-            } else if (Drive_Backwards_Rights == 1) {
-                Turn_Backwards_Right()
-            } else if (Halt == 1) {
-                Stop()
-            }
-        }
-        while (mode == 1) {
-            if (Drive_Forwords_Left == 1) {
-                Turn_Left()
-            } else if (Drive_Forwords == 1) {
-                driveForward()
-            } else if (Drive_Forwords_Rights == 1) {
-                Turn_Right()
-            } else if (Halt == 1) {
-                Stop()
-            }
-        }
         while (mode == 3) {
             if (Fjärrstyr == 0) {
                 Line = 0

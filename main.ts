@@ -43,125 +43,144 @@ function Turn_Backwards_Right () {
     basic.pause(1000)
     bitbot.stop(BBStopMode.Brake)
 }
-function lights_6 () {
-    bitbot.setPixelColor(5, 0x659900)
-    bitbot.setPixelColor(11, 0x659900)
-    basic.pause(200)
-    bitbot.ledClear()
-}
 radio.onReceivedNumber(function (receivedNumber) {
     basic.showNumber(1)
     if (receivedNumber == 8) {
         basic.showNumber(2)
-        Variables()
-    } else if (lock == 1 && (receivedNumber == 1 || receivedNumber == 2 || (receivedNumber == 3 || receivedNumber == 4) || (receivedNumber == 5 || receivedNumber == 6 || receivedNumber == 7))) {
-        basic.showNumber(5)
-        if (receivedNumber == 1) {
-            if (mode == 1) {
-                Turn_Left()
-            } else if (mode == 2) {
-                Turn_Backwards_Left()
-            } else if (mode == 3) {
-            	
-            } else if (mode == 4) {
-                basic.showNumber(6)
-            }
-        } else if (receivedNumber == 2) {
-            if (mode == 1) {
-                driveForward()
-            } else if (mode == 2) {
-                Drive_Backwards()
-            } else if (mode == 3) {
-                Stop()
-            } else if (mode == 4) {
-                mode = 1
-            }
-        } else if (receivedNumber == 3) {
-            if (mode == 1) {
-                Stop()
-            } else if (mode == 2) {
-                Stop()
-            } else if (mode == 3) {
-            	
-            } else if (mode == 4) {
-                mode = 2
-            }
-        } else if (receivedNumber == 4) {
-            if (mode == 1) {
-                Turn_Right()
-            } else if (mode == 2) {
-                Turn_Backwards_Right()
-            } else if (mode == 3) {
-                Fjärrstyr = 0
-            } else if (mode == 4) {
-                mode = 3
-            }
-        } else if (receivedNumber == 5) {
-            if (mode == 1) {
-                mode = 4
-            } else if (mode == 2) {
-                mode = 1
-            } else if (mode == 3) {
-                mode = 2
-            } else if (mode == 4) {
-                mode = 3
-            }
-        } else if (receivedNumber == 6) {
-            if (mode == 1) {
-                mode = 2
-            } else if (mode == 2) {
-                mode = 3
-            } else if (mode == 3) {
-                mode = 4
-            } else if (mode == 4) {
-                mode = 1
-            }
-        } else if (receivedNumber == 7) {
-            if (mode == 1) {
-                Snabbare()
-            } else if (mode == 2) {
-                Snabbare()
-            } else if (mode == 3) {
-                Snabbare()
-            } else if (mode == 4) {
-                control.reset()
-            }
+        lock = 1
+    }
+    basic.showNumber(3)
+    if (receivedNumber == 1) {
+        if (mode == 1) {
+            Turn_Left()
+        } else if (mode == 2) {
+            Turn_Backwards_Left()
+        } else if (mode == 3) {
+        	
+        } else if (mode == 4) {
+            basic.showNumber(4)
+            mode = 1
+        }
+    } else if (receivedNumber == 2) {
+        if (mode == 1) {
+            driveForward()
+        } else if (mode == 2) {
+            Drive_Backwards()
+        } else if (mode == 3) {
+            Stop()
+        } else if (mode == 4) {
+            mode = 2
+        }
+    } else if (receivedNumber == 3) {
+        if (mode == 1) {
+            Stop()
+        } else if (mode == 2) {
+            Stop()
+        } else if (mode == 3) {
+        	
+        } else if (mode == 4) {
+            mode = 3
+        }
+    } else if (receivedNumber == 4) {
+        if (mode == 1) {
+            Turn_Right()
+        } else if (mode == 2) {
+            Turn_Backwards_Right()
+        } else if (mode == 3) {
+            Fjärrstyr = 0
+        } else if (mode == 4) {
+            mode = 4
+        }
+    } else if (receivedNumber == 5) {
+        if (mode == 1) {
+            mode = 4
+        } else if (mode == 2) {
+            mode = 1
+        } else if (mode == 3) {
+            mode = 2
+        } else if (mode == 4) {
+            mode = 3
+        }
+    } else if (receivedNumber == 6) {
+        if (mode == 1) {
+            mode = 2
+        } else if (mode == 2) {
+            mode = 3
+        } else if (mode == 3) {
+            mode = 4
+        } else if (mode == 4) {
+            mode = 1
+        }
+    } else if (receivedNumber == 7) {
+        if (mode == 1) {
+            Speed = Speed + 10
+        } else if (mode == 2) {
+            Speed = Speed + 10
+        } else if (mode == 3) {
+            Speed = Speed + 10
+        } else if (mode == 4) {
+            control.reset()
         }
     }
 })
-function lights_1 () {
-    bitbot.setPixelColor(0, 0x659900)
-    bitbot.setPixelColor(6, 0x659900)
-    basic.pause(200)
-    bitbot.ledClear()
-}
-function Snabbare () {
-    mode = Speed + 10
-}
 function Lights_Backward () {
     for (let index = 0; index < 2; index++) {
-        Lights2()
+        bitbot.setPixelColor(5, 0xFF0000)
+        bitbot.setPixelColor(11, 0xFF0000)
+        basic.pause(200)
+        bitbot.ledClear()
+        bitbot.setPixelColor(4, 0xFF0000)
+        bitbot.setPixelColor(10, 0xFF0000)
+        basic.pause(200)
+        bitbot.ledClear()
+        bitbot.setPixelColor(3, 0xFF0000)
+        bitbot.setPixelColor(9, 0xFF0000)
+        basic.pause(200)
+        bitbot.ledClear()
+        bitbot.setPixelColor(2, 0xFF0000)
+        bitbot.setPixelColor(8, 0xFF0000)
+        basic.pause(200)
+        bitbot.ledClear()
+        bitbot.setPixelColor(1, 0xFF0000)
+        bitbot.setPixelColor(7, 0xFF0000)
+        basic.pause(200)
+        bitbot.ledClear()
+        bitbot.setPixelColor(0, 0xFF0000)
+        bitbot.setPixelColor(6, 0xFF0000)
+        basic.pause(200)
+        bitbot.ledClear()
     }
 }
 function Lights_forward () {
     for (let index = 0; index < 2; index++) {
-        Lights()
+        bitbot.setPixelColor(0, 0xFF0000)
+        bitbot.setPixelColor(6, 0xFF0000)
+        basic.pause(200)
+        bitbot.ledClear()
+        bitbot.setPixelColor(1, 0xFF0000)
+        bitbot.setPixelColor(7, 0xFF0000)
+        basic.pause(200)
+        bitbot.ledClear()
+        bitbot.setPixelColor(2, 0xFF0000)
+        bitbot.setPixelColor(8, 0xFF0000)
+        basic.pause(200)
+        bitbot.ledClear()
+        bitbot.setPixelColor(3, 0xFF0000)
+        bitbot.setPixelColor(9, 0xFF0000)
+        basic.pause(200)
+        bitbot.ledClear()
+        bitbot.setPixelColor(4, 0xFF0000)
+        bitbot.setPixelColor(10, 0xFF0000)
+        basic.pause(200)
+        bitbot.ledClear()
+        bitbot.setPixelColor(5, 0xFF0000)
+        bitbot.setPixelColor(11, 0xFF0000)
+        basic.pause(200)
+        bitbot.ledClear()
     }
 }
-function lights_4 () {
-    bitbot.setPixelColor(3, 0x659900)
-    bitbot.setPixelColor(9, 0x659900)
-    basic.pause(200)
-    bitbot.ledClear()
-}
-function lights_3 () {
-    bitbot.setPixelColor(2, 0x659900)
-    bitbot.setPixelColor(8, 0x659900)
-    basic.pause(200)
-    bitbot.ledClear()
-}
 function Line_followers () {
-    for (let index = 0; index < 1e+103; index++) {
+    while (true) {
         if (bitbot.readLine(BBLineSensor.Left) == 1) {
             bitbot.driveTurnMilliseconds(BBRobotDirection.Left, 300, 45)
             Lights_While_Line_folowers_on()
@@ -172,14 +191,6 @@ function Line_followers () {
             bitbot.drive(Speed)
         }
     }
-}
-function Lights () {
-    lights_1()
-    lights_2()
-    lights_3()
-    lights_4()
-    lights_5()
-    lights_6()
 }
 function Turn_Left () {
     bitbot.stop(BBStopMode.Brake)
@@ -202,14 +213,6 @@ function Turn_Left () {
     basic.pause(1000)
     bitbot.stop(BBStopMode.Brake)
 }
-function Lights2 () {
-    lights_6()
-    lights_5()
-    lights_4()
-    lights_3()
-    lights_2()
-    lights_1()
-}
 function I () {
     Drive_Backwards_Left = 0
     Backwards = 0
@@ -218,28 +221,16 @@ function I () {
     Drive_Forwords = 0
     Drive_Forwords_Rights = 0
     Halt = 0
-    Speed = 0
+    Speed = 10
     Fjärrstyr = 0
     lock = 0
-    mode = 0
+    mode = 4
     Line = 0
-}
-function lights_2 () {
-    bitbot.setPixelColor(1, 0x659900)
-    bitbot.setPixelColor(7, 0x659900)
-    basic.pause(200)
-    bitbot.ledClear()
 }
 function driveForward () {
     Lights_forward()
     basic.pause(100)
     bitbot.go(BBDirection.Forward, Speed)
-}
-function lights_5 () {
-    bitbot.setPixelColor(4, 0x659900)
-    bitbot.setPixelColor(10, 0x659900)
-    basic.pause(200)
-    bitbot.ledClear()
 }
 function Turn_Backwards_Left () {
     bitbot.stop(BBStopMode.Brake)
@@ -293,22 +284,6 @@ function Lights_While_Line_folowers_on () {
         . . # . .
         `)
 }
-function Variables () {
-    basic.showNumber(3)
-    music.startMelody(music.builtInMelody(Melodies.Dadadadum), MelodyOptions.Once)
-    Drive_Backwards_Left = 0
-    Backwards = 0
-    Drive_Backwards_Rights = 0
-    Drive_Forwords_Left = 0
-    Drive_Forwords = 0
-    Drive_Forwords_Rights = 0
-    Halt = 0
-    Speed = 10
-    Fjärrstyr = 0
-    lock = 1
-    mode = 4
-    Line = 0
-}
 let Line = 0
 let Halt = 0
 let Drive_Forwords_Rights = 0
@@ -324,15 +299,8 @@ let lock = 0
 let Led = 0
 radio.setGroup(1)
 I()
-basic.forever(function () {
+control.inBackground(function () {
     while (lock == 1) {
-        while (mode == 3) {
-            if (Fjärrstyr == 0) {
-                Line = 0
-            } else if (Fjärrstyr == 1) {
-                Line = 1
-            }
-        }
         while (Line == 1) {
             if (bitbot.readLine(BBLineSensor.Left) == 1) {
                 Line_followers()

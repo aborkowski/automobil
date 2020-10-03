@@ -44,21 +44,16 @@ function Turn_Backwards_Right () {
     bitbot.stop(BBStopMode.Brake)
 }
 radio.onReceivedNumber(function (receivedNumber) {
-    basic.showNumber(1)
-    if (receivedNumber == 8) {
-        basic.showNumber(2)
-        lock = 1
-    }
-    basic.showNumber(3)
     if (receivedNumber == 1) {
         if (mode == 1) {
+            basic.showNumber(2)
             Turn_Left()
         } else if (mode == 2) {
             Turn_Backwards_Left()
         } else if (mode == 3) {
         	
         } else if (mode == 4) {
-            basic.showNumber(4)
+            basic.showNumber(1)
             mode = 1
         }
     } else if (receivedNumber == 2) {
@@ -122,6 +117,10 @@ radio.onReceivedNumber(function (receivedNumber) {
             control.reset()
         }
     }
+    basic.showNumber(1)
+    if (receivedNumber == 8 && lock == 0) {
+        lock = 1
+    }
 })
 function Lights_Backward () {
     for (let index = 0; index < 2; index++) {
@@ -179,6 +178,9 @@ function Lights_forward () {
         bitbot.ledClear()
     }
 }
+input.onButtonPressed(Button.A, function () {
+    radio.sendNumber(1)
+})
 function Line_followers () {
     while (true) {
         if (bitbot.readLine(BBLineSensor.Left) == 1) {
@@ -193,15 +195,9 @@ function Line_followers () {
     }
 }
 function Turn_Left () {
+    basic.showNumber(3)
     bitbot.stop(BBStopMode.Brake)
     for (let index = 0; index < 2; index++) {
-        basic.showLeds(`
-            . . . . .
-            . # . . .
-            # # # . .
-            . # # . .
-            . . # . .
-            `)
         for (let index = 0; index <= 5; index++) {
             Led = index + 0
             bitbot.setPixelColor(Led, 0xFFC000)
@@ -227,6 +223,9 @@ function I () {
     mode = 4
     Line = 0
 }
+input.onButtonPressed(Button.B, function () {
+    radio.sendNumber(8)
+})
 function driveForward () {
     Lights_forward()
     basic.pause(100)
@@ -292,10 +291,10 @@ let Drive_Forwords_Left = 0
 let Drive_Backwards_Rights = 0
 let Backwards = 0
 let Drive_Backwards_Left = 0
+let lock = 0
 let Speed = 0
 let Fjärrstyr = 0
 let mode = 0
-let lock = 0
 let Led = 0
 radio.setGroup(1)
 I()

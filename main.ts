@@ -178,9 +178,6 @@ function Lights_forward () {
         bitbot.ledClear()
     }
 }
-input.onButtonPressed(Button.A, function () {
-    radio.sendNumber(1)
-})
 function Line_followers () {
     while (true) {
         if (bitbot.readLine(BBLineSensor.Left) == 1) {
@@ -223,9 +220,6 @@ function I () {
     mode = 4
     Line = 0
 }
-input.onButtonPressed(Button.B, function () {
-    radio.sendNumber(8)
-})
 function driveForward () {
     Lights_forward()
     basic.pause(100)

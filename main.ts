@@ -117,6 +117,8 @@ radio.onReceivedNumber(function (receivedNumber) {
     }
     if (receivedNumber == 8 && lock == 0) {
         lock = 1
+        bitbot.setLedColor(0x000000)
+        bitbot.ledClear()
     }
 })
 function Lights_Backward () {

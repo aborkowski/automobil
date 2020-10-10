@@ -33,12 +33,12 @@ function Turn_Backwards_Right () {
             . . . . .
             `)
         for (let index = 0; index <= 5; index++) {
-            Led = index + 0
+            Led = index - 0
             bitbot.setPixelColor(Led, 0xFFC000)
             basic.pause(200)
             bitbot.ledClear()
         }
-        bitbot.driveTurnMilliseconds(BBRobotDirection.Left, 300, 200)
+        bitbot.driveTurnMilliseconds(BBRobotDirection.Right, 300, 200)
     }
     basic.pause(1000)
     bitbot.stop(BBStopMode.Brake)

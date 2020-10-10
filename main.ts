@@ -46,14 +46,12 @@ function Turn_Backwards_Right () {
 radio.onReceivedNumber(function (receivedNumber) {
     if (receivedNumber == 1) {
         if (mode == 1) {
-            basic.showNumber(2)
             Turn_Left()
         } else if (mode == 2) {
             Turn_Backwards_Left()
         } else if (mode == 3) {
         	
         } else if (mode == 4) {
-            basic.showNumber(1)
             mode = 1
         }
     } else if (receivedNumber == 2) {
@@ -117,63 +115,62 @@ radio.onReceivedNumber(function (receivedNumber) {
             control.reset()
         }
     }
-    basic.showNumber(1)
     if (receivedNumber == 8 && lock == 0) {
         lock = 1
     }
 })
 function Lights_Backward () {
     for (let index = 0; index < 2; index++) {
-        bitbot.setPixelColor(5, 0xFF0000)
-        bitbot.setPixelColor(11, 0xFF0000)
+        bitbot.setPixelColor(5, 0x18E600)
+        bitbot.setPixelColor(11, 0x18E600)
         basic.pause(200)
         bitbot.ledClear()
-        bitbot.setPixelColor(4, 0xFF0000)
-        bitbot.setPixelColor(10, 0xFF0000)
+        bitbot.setPixelColor(4, 0x18E600)
+        bitbot.setPixelColor(10, 0x18E600)
         basic.pause(200)
         bitbot.ledClear()
-        bitbot.setPixelColor(3, 0xFF0000)
-        bitbot.setPixelColor(9, 0xFF0000)
+        bitbot.setPixelColor(3, 0x18E600)
+        bitbot.setPixelColor(9, 0x18E600)
         basic.pause(200)
         bitbot.ledClear()
-        bitbot.setPixelColor(2, 0xFF0000)
-        bitbot.setPixelColor(8, 0xFF0000)
+        bitbot.setPixelColor(2, 0x18E600)
+        bitbot.setPixelColor(8, 0x18E600)
         basic.pause(200)
         bitbot.ledClear()
-        bitbot.setPixelColor(1, 0xFF0000)
-        bitbot.setPixelColor(7, 0xFF0000)
+        bitbot.setPixelColor(1, 0x18E600)
+        bitbot.setPixelColor(7, 0x18E600)
         basic.pause(200)
         bitbot.ledClear()
-        bitbot.setPixelColor(0, 0xFF0000)
-        bitbot.setPixelColor(6, 0xFF0000)
+        bitbot.setPixelColor(0, 0x18E600)
+        bitbot.setPixelColor(6, 0x18E600)
         basic.pause(200)
         bitbot.ledClear()
     }
 }
 function Lights_forward () {
     for (let index = 0; index < 2; index++) {
-        bitbot.setPixelColor(0, 0xFF0000)
-        bitbot.setPixelColor(6, 0xFF0000)
+        bitbot.setPixelColor(0, 0x18E600)
+        bitbot.setPixelColor(6, 0x18E600)
         basic.pause(200)
         bitbot.ledClear()
-        bitbot.setPixelColor(1, 0xFF0000)
-        bitbot.setPixelColor(7, 0xFF0000)
+        bitbot.setPixelColor(1, 0x18E600)
+        bitbot.setPixelColor(7, 0x18E600)
         basic.pause(200)
         bitbot.ledClear()
-        bitbot.setPixelColor(2, 0xFF0000)
-        bitbot.setPixelColor(8, 0xFF0000)
+        bitbot.setPixelColor(2, 0x18E600)
+        bitbot.setPixelColor(8, 0x18E600)
         basic.pause(200)
         bitbot.ledClear()
-        bitbot.setPixelColor(3, 0xFF0000)
-        bitbot.setPixelColor(9, 0xFF0000)
+        bitbot.setPixelColor(3, 0x18E600)
+        bitbot.setPixelColor(9, 0x18E600)
         basic.pause(200)
         bitbot.ledClear()
-        bitbot.setPixelColor(4, 0xFF0000)
-        bitbot.setPixelColor(10, 0xFF0000)
+        bitbot.setPixelColor(4, 0x18E600)
+        bitbot.setPixelColor(10, 0x18E600)
         basic.pause(200)
         bitbot.ledClear()
-        bitbot.setPixelColor(5, 0xFF0000)
-        bitbot.setPixelColor(11, 0xFF0000)
+        bitbot.setPixelColor(5, 0x18E600)
+        bitbot.setPixelColor(11, 0x18E600)
         basic.pause(200)
         bitbot.ledClear()
     }
@@ -192,9 +189,15 @@ function Line_followers () {
     }
 }
 function Turn_Left () {
-    basic.showNumber(3)
     bitbot.stop(BBStopMode.Brake)
     for (let index = 0; index < 2; index++) {
+        basic.showLeds(`
+            . . . . .
+            . # . . .
+            # # # . .
+            . # # . .
+            . . # . .
+            `)
         for (let index = 0; index <= 5; index++) {
             Led = index + 0
             bitbot.setPixelColor(Led, 0xFFC000)

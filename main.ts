@@ -303,7 +303,7 @@ control.inBackground(function () {
             } else if (bitbot.readLine(BBLineSensor.Right) == 1) {
                 Line_followers()
             } else if (bitbot.readLine(BBLineSensor.Left) == 0 == (bitbot.readLine(BBLineSensor.Right) == 0)) {
-                driveForward()
+                Line_followers()
             }
         }
     }

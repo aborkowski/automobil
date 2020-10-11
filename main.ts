@@ -44,84 +44,87 @@ function Turn_Backwards_Right () {
     bitbot.stop(BBStopMode.Brake)
 }
 radio.onReceivedNumber(function (receivedNumber) {
-    basic.clearScreen()
-    if (receivedNumber == 1) {
-        if (mode == 1) {
-            Turn_Left()
-        } else if (mode == 2) {
-            Turn_Backwards_Left()
-        } else if (mode == 3) {
-        	
-        } else if (mode == 4) {
-            mode = 1
-        }
-    } else if (receivedNumber == 2) {
-        if (mode == 1) {
-            driveForward()
-        } else if (mode == 2) {
-            Drive_Backwards()
-        } else if (mode == 3) {
-            Stop()
-        } else if (mode == 4) {
-            mode = 2
-        }
-    } else if (receivedNumber == 3) {
-        if (mode == 1) {
-            Stop()
-        } else if (mode == 2) {
-            Stop()
-        } else if (mode == 3) {
-        	
-        } else if (mode == 4) {
-            mode = 3
-        }
-    } else if (receivedNumber == 4) {
-        if (mode == 1) {
-            Turn_Right()
-        } else if (mode == 2) {
-            Turn_Backwards_Right()
-        } else if (mode == 3) {
-            Fjärrstyr = 0
-        } else if (mode == 4) {
-            mode = 4
-        }
-    } else if (receivedNumber == 5) {
-        if (mode == 1) {
-            mode = 4
-        } else if (mode == 2) {
-            mode = 1
-        } else if (mode == 3) {
-            mode = 2
-        } else if (mode == 4) {
-            mode = 3
-        }
-    } else if (receivedNumber == 6) {
-        if (mode == 1) {
-            mode = 2
-        } else if (mode == 2) {
-            mode = 3
-        } else if (mode == 3) {
-            mode = 4
-        } else if (mode == 4) {
-            mode = 1
-        }
-    } else if (receivedNumber == 7) {
-        if (mode == 1) {
-            Speed = Speed + 10
-        } else if (mode == 2) {
-            Speed = Speed + 10
-        } else if (mode == 3) {
-            Speed = Speed + 10
-        } else if (mode == 4) {
-            bitbot.ledRainbow()
-            basic.pause(500)
-            bitbot.ledClear()
-            basic.pause(500)
-            bitbot.ledRainbow()
-            basic.pause(500)
-            bitbot.ledClear()
-            basic.pause(500)
-            I()
+    if (lock == 1) {
+        basic.clearScreen()
+        bitbot.ledClear()
+        if (receivedNumber == 1) {
+            if (mode == 1) {
+                Turn_Left()
+            } else if (mode == 2) {
+                Turn_Backwards_Left()
+            } else if (mode == 3) {
+                Fjärrstyr = 1
+            } else if (mode == 4) {
+                mode = 1
+            }
+        } else if (receivedNumber == 2) {
+            if (mode == 1) {
+                driveForward()
+            } else if (mode == 2) {
+                Drive_Backwards()
+            } else if (mode == 3) {
+                driveForward()
+            } else if (mode == 4) {
+                mode = 2
+            }
+        } else if (receivedNumber == 3) {
+            if (mode == 1) {
+                Stop()
+            } else if (mode == 2) {
+                Stop()
+            } else if (mode == 3) {
+                Stop()
+            } else if (mode == 4) {
+                mode = 3
+            }
+        } else if (receivedNumber == 4) {
+            if (mode == 1) {
+                Turn_Right()
+            } else if (mode == 2) {
+                Turn_Backwards_Right()
+            } else if (mode == 3) {
+                Fjärrstyr = 0
+            } else if (mode == 4) {
+                mode = 4
+            }
+        } else if (receivedNumber == 5) {
+            if (mode == 1) {
+                mode = 4
+            } else if (mode == 2) {
+                mode = 1
+            } else if (mode == 3) {
+                mode = 2
+            } else if (mode == 4) {
+                mode = 3
+            }
+        } else if (receivedNumber == 6) {
+            if (mode == 1) {
+                mode = 2
+            } else if (mode == 2) {
+                mode = 3
+            } else if (mode == 3) {
+                mode = 4
+            } else if (mode == 4) {
+                mode = 1
+            }
+        } else if (receivedNumber == 7) {
+            if (mode == 1) {
+                Speed = Speed + 10
+            } else if (mode == 2) {
+                Speed = Speed + 10
+            } else if (mode == 3) {
+                Speed = Speed + 10
+            } else if (mode == 4) {
+                bitbot.ledRainbow()
+                basic.pause(500)
+                bitbot.ledClear()
+                basic.pause(500)
+                bitbot.ledRainbow()
+                basic.pause(500)
+                bitbot.ledClear()
+                basic.pause(500)
+                I()
+            }
         }
     }
     if (receivedNumber == 8 && lock == 0) {
@@ -226,13 +229,6 @@ function Turn_Left () {
     bitbot.stop(BBStopMode.Brake)
 }
 function I () {
-    Drive_Backwards_Left = 0
-    Backwards = 0
-    Drive_Backwards_Rights = 0
-    Drive_Forwords_Left = 0
-    Drive_Forwords = 0
-    Drive_Forwords_Rights = 0
-    Halt = 0
     Speed = 30
     Fjärrstyr = 0
     lock = 0
@@ -277,7 +273,6 @@ function Stop () {
         . . . . .
         `)
     bitbot.stop(BBStopMode.Brake)
-    bitbot.ledClear()
 }
 function Drive_Backwards () {
     Lights_Backward()
@@ -297,20 +292,15 @@ function Lights_While_Line_folowers_on () {
         `)
 }
 let Line = 0
-let Halt = 0
-let Drive_Forwords_Rights = 0
-let Drive_Forwords = 0
-let Drive_Forwords_Left = 0
-let Drive_Backwards_Rights = 0
-let Backwards = 0
-let Drive_Backwards_Left = 0
-let lock = 0
 let Speed = 0
 let Fjärrstyr = 0
 let mode = 0
+let lock = 0
 let Led = 0
 radio.setGroup(1)
 I()
+bitbot.ledBrightness(255)
+led.setBrightness(255)
 control.inBackground(function () {
     while (lock == 1) {
         while (Line == 1) {

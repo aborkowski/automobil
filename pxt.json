@@ -6,7 +6,8 @@
         "radio": "*",
         "BitBot": "github:4tronix/bitbot#1.4.6",
         "radio-broadcast": "*",
-        "touchbit": "github:pimoroni/pxt-touchbit#v0.0.1"
+        "touchbit": "github:pimoroni/pxt-touchbit#v0.0.1",
+        "microturtle": "github:microsoft/pxt-microturtle#v0.0.9"
     },
     "files": [
         "main.blocks",

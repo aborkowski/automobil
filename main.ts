@@ -4,13 +4,12 @@ enum RadioMessage {
 function Turn_Right () {
     bitbot.stop(BBStopMode.Brake)
     for (let index = 0; index < 2; index++) {
-        basic.showLeds(`
-            . . . . .
-            . . . # .
-            . . # # #
-            . . # # .
-            . . # . .
-            `)
+        turtle.setPosition(2, 4)
+        turtle.forward(2)
+        turtle.turnRight()
+        turtle.forward(2)
+        turtle.turnLeft()
+        basic.clearScreen()
         for (let index = 0; index <= 5; index++) {
             Led = index + 6
             bitbot.setPixelColor(Led, 0xFFC000)
@@ -25,13 +24,12 @@ function Turn_Right () {
 function Turn_Backwards_Right () {
     bitbot.stop(BBStopMode.Brake)
     for (let index = 0; index < 2; index++) {
-        basic.showLeds(`
-            . . # . .
-            . . # # .
-            . . # # #
-            . . . # .
-            . . . . .
-            `)
+        turtle.setPosition(2, 0)
+        turtle.back(2)
+        turtle.turnRight()
+        turtle.forward(2)
+        turtle.turnLeft()
+        basic.clearScreen()
         for (let index = 0; index <= 5; index++) {
             Led = index - 0
             bitbot.setPixelColor(Led, 0xFFC000)
@@ -111,30 +109,17 @@ radio.onReceivedNumber(function (receivedNumber) {
             if (mode == 1) {
                 Speed = Speed + 10
             } else if (mode == 2) {
-                Speed = Speed + 10
+                Speed = Speed - 10
             } else if (mode == 3) {
                 Speed = Speed + 10
             } else if (mode == 4) {
-                bitbot.ledRainbow()
-                basic.pause(500)
-                bitbot.ledClear()
-                basic.pause(500)
-                bitbot.ledRainbow()
-                basic.pause(500)
-                bitbot.ledClear()
-                basic.pause(500)
+                Start()
                 I()
             }
         }
     }
     if (receivedNumber == 8 && lock == 0) {
-        bitbot.ledRainbow()
-        basic.pause(500)
-        bitbot.ledClear()
-        basic.pause(500)
-        bitbot.ledRainbow()
-        basic.pause(500)
-        bitbot.ledClear()
+        Start()
         lock = 1
     }
 })
@@ -210,13 +195,12 @@ function Line_followers () {
 function Turn_Left () {
     bitbot.stop(BBStopMode.Brake)
     for (let index = 0; index < 2; index++) {
-        basic.showLeds(`
-            . . . . .
-            . # . . .
-            # # # . .
-            . # # . .
-            . . # . .
-            `)
+        turtle.setPosition(2, 4)
+        turtle.forward(2)
+        turtle.turnLeft()
+        turtle.forward(2)
+        turtle.turnRight()
+        basic.clearScreen()
         for (let index = 0; index <= 5; index++) {
             Led = index + 0
             bitbot.setPixelColor(Led, 0xFFC000)
@@ -240,16 +224,30 @@ function driveForward () {
     basic.pause(100)
     bitbot.go(BBDirection.Forward, Speed)
 }
+function Start () {
+    bitbot.ledRainbow()
+    bitbot.buzz(true)
+    basic.pause(100)
+    bitbot.buzz(false)
+    basic.pause(100)
+    bitbot.ledClear()
+    basic.pause(100)
+    bitbot.ledRainbow()
+    bitbot.buzz(true)
+    basic.pause(100)
+    bitbot.buzz(false)
+    basic.pause(100)
+    bitbot.ledClear()
+}
 function Turn_Backwards_Left () {
     bitbot.stop(BBStopMode.Brake)
     for (let index = 0; index < 2; index++) {
-        basic.showLeds(`
-            . . # . .
-            . # # . .
-            # # # . .
-            . # . . .
-            . . . . .
-            `)
+        turtle.setPosition(2, 0)
+        turtle.back(2)
+        turtle.turnLeft()
+        turtle.forward(2)
+        turtle.turnRight()
+        basic.clearScreen()
         for (let index = 0; index <= 5; index++) {
             Led = index + 0
             bitbot.setPixelColor(Led, 0xFFC000)
@@ -297,6 +295,7 @@ let Fjärrstyr = 0
 let mode = 0
 let lock = 0
 let Led = 0
+basic.clearScreen()
 radio.setGroup(1)
 I()
 bitbot.ledBrightness(255)

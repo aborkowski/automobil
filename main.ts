@@ -44,6 +44,7 @@ function Turn_Backwards_Right () {
     bitbot.stop(BBStopMode.Brake)
 }
 radio.onReceivedNumber(function (receivedNumber) {
+    basic.clearScreen()
     if (receivedNumber == 1) {
         if (mode == 1) {
             Turn_Left()
@@ -112,14 +113,26 @@ radio.onReceivedNumber(function (receivedNumber) {
         } else if (mode == 3) {
             Speed = Speed + 10
         } else if (mode == 4) {
-            control.reset()
+            bitbot.ledRainbow()
+            basic.pause(500)
+            bitbot.ledClear()
+            basic.pause(500)
+            bitbot.ledRainbow()
+            basic.pause(500)
+            bitbot.ledClear()
+            basic.pause(500)
+            I()
         }
     }
     if (receivedNumber == 8 && lock == 0) {
-        lock = 1
-        bitbot.setLedColor(0x000000)
-        basic.pause(2000)
+        bitbot.ledRainbow()
+        basic.pause(500)
         bitbot.ledClear()
+        basic.pause(500)
+        bitbot.ledRainbow()
+        basic.pause(500)
+        bitbot.ledClear()
+        lock = 1
     }
 })
 function Lights_Backward () {
@@ -220,7 +233,7 @@ function I () {
     Drive_Forwords = 0
     Drive_Forwords_Rights = 0
     Halt = 0
-    Speed = 10
+    Speed = 30
     Fjärrstyr = 0
     lock = 0
     mode = 4

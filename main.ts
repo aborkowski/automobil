@@ -223,6 +223,7 @@ function driveForward () {
     Lights_forward()
     basic.pause(100)
     bitbot.go(BBDirection.Forward, Speed)
+    bitbot.setLedColor(0xFFFFFF)
 }
 function Start () {
     bitbot.ledRainbow()
@@ -276,6 +277,7 @@ function Drive_Backwards () {
     Lights_Backward()
     basic.pause(100)
     bitbot.go(BBDirection.Reverse, Speed)
+    bitbot.setLedColor(0xFFFFFF)
 }
 function Lights_While_Line_folowers_on () {
     for (let index3 = 0; index3 <= 11; index3++) {

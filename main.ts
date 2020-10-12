@@ -51,7 +51,7 @@ radio.onReceivedNumber(function (receivedNumber) {
             } else if (mode == 2) {
                 Turn_Backwards_Left()
             } else if (mode == 3) {
-                Fjärrstyr = 1
+                Line = 1
             } else if (mode == 4) {
                 mode = 1
             }
@@ -81,7 +81,7 @@ radio.onReceivedNumber(function (receivedNumber) {
             } else if (mode == 2) {
                 Turn_Backwards_Right()
             } else if (mode == 3) {
-                Fjärrstyr = 0
+                Line = 0
             } else if (mode == 4) {
                 mode = 4
             }
@@ -182,13 +182,11 @@ function Lights_forward () {
 function Line_followers () {
     while (true) {
         if (bitbot.readLine(BBLineSensor.Left) == 1) {
-            bitbot.driveTurnMilliseconds(BBRobotDirection.Left, 300, 45)
-            Lights_While_Line_folowers_on()
+        	
         } else if (bitbot.readLine(BBLineSensor.Right) == 1) {
-            bitbot.driveTurnMilliseconds(BBRobotDirection.Right, 300, 45)
-            Lights_While_Line_folowers_on()
+        	
         } else if (bitbot.readLine(BBLineSensor.Left) == 0 == (bitbot.readLight(BBLightSensor.Left) == 0)) {
-            bitbot.drive(Speed)
+        	
         }
     }
 }
@@ -291,9 +289,9 @@ function Lights_While_Line_folowers_on () {
         . . # . .
         `)
 }
-let Line = 0
-let Speed = 0
 let Fjärrstyr = 0
+let Speed = 0
+let Line = 0
 let mode = 0
 let lock = 0
 let Led = 0
@@ -306,11 +304,13 @@ control.inBackground(function () {
     while (lock == 1) {
         while (Line == 1) {
             if (bitbot.readLine(BBLineSensor.Left) == 1) {
-                Line_followers()
+                bitbot.driveTurnMilliseconds(BBRobotDirection.Left, 300, 45)
+                Lights_While_Line_folowers_on()
             } else if (bitbot.readLine(BBLineSensor.Right) == 1) {
-                Line_followers()
+                bitbot.driveTurnMilliseconds(BBRobotDirection.Right, 300, 45)
+                Lights_While_Line_folowers_on()
             } else if (bitbot.readLine(BBLineSensor.Left) == 0 == (bitbot.readLine(BBLineSensor.Right) == 0)) {
-                Line_followers()
+                bitbot.drive(Speed)
             }
         }
     }

@@ -179,17 +179,6 @@ function Lights_forward () {
         bitbot.ledClear()
     }
 }
-function Line_followers () {
-    while (true) {
-        if (bitbot.readLine(BBLineSensor.Left) == 1) {
-        	
-        } else if (bitbot.readLine(BBLineSensor.Right) == 1) {
-        	
-        } else if (bitbot.readLine(BBLineSensor.Left) == 0 == (bitbot.readLight(BBLightSensor.Left) == 0)) {
-        	
-        }
-    }
-}
 function Turn_Left () {
     bitbot.stop(BBStopMode.Brake)
     for (let index = 0; index < 2; index++) {

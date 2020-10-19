@@ -54,6 +54,10 @@ radio.onReceivedNumber(function (receivedNumber) {
                 Line = 1
             } else if (mode == 4) {
                 mode = 1
+            } else if (mode == 5) {
+                light2 = 1
+            } else if (mode == 6) {
+                sonar = 1
             }
         } else if (receivedNumber == 2) {
             if (mode == 1) {
@@ -64,6 +68,10 @@ radio.onReceivedNumber(function (receivedNumber) {
                 driveForward()
             } else if (mode == 4) {
                 mode = 2
+            } else if (mode == 5) {
+                driveForward()
+            } else if (mode == 6) {
+                driveForward()
             }
         } else if (receivedNumber == 3) {
             if (mode == 1) {
@@ -74,6 +82,10 @@ radio.onReceivedNumber(function (receivedNumber) {
                 Stop()
             } else if (mode == 4) {
                 mode = 3
+            } else if (mode == 5) {
+                Stop()
+            } else if (mode == 6) {
+                Stop()
             }
         } else if (receivedNumber == 4) {
             if (mode == 1) {
@@ -84,16 +96,24 @@ radio.onReceivedNumber(function (receivedNumber) {
                 Line = 0
             } else if (mode == 4) {
                 mode = 4
+            } else if (mode == 5) {
+                light2 = 0
+            } else if (mode == 6) {
+                sonar = 0
             }
         } else if (receivedNumber == 5) {
             if (mode == 1) {
-                mode = 4
+                mode = 6
             } else if (mode == 2) {
                 mode = 1
             } else if (mode == 3) {
                 mode = 2
             } else if (mode == 4) {
                 mode = 3
+            } else if (mode == 5) {
+                mode = 5
+            } else if (mode == 6) {
+                mode = 5
             }
         } else if (receivedNumber == 6) {
             if (mode == 1) {
@@ -103,6 +123,10 @@ radio.onReceivedNumber(function (receivedNumber) {
             } else if (mode == 3) {
                 mode = 4
             } else if (mode == 4) {
+                mode = 5
+            } else if (mode == 5) {
+                mode = 6
+            } else if (mode == 6) {
                 mode = 1
             }
         } else if (receivedNumber == 7) {
@@ -115,6 +139,14 @@ radio.onReceivedNumber(function (receivedNumber) {
             } else if (mode == 4) {
                 Start()
                 I()
+            } else if (Speed == 100) {
+                Speed = 30
+            } else if (Speed > 30) {
+                Speed = 100
+            } else if (mode == 5) {
+                Speed = Speed + 10
+            } else if (mode == 6) {
+                Speed = Speed - 10
             }
         }
     }
@@ -205,6 +237,8 @@ function I () {
     lock = 0
     mode = 4
     Line = 0
+    sonar = 0
+    light2 = 0
 }
 function driveForward () {
     Lights_forward()
@@ -268,7 +302,7 @@ function Drive_Backwards () {
 }
 function Lights_While_Line_folowers_on () {
     for (let index3 = 0; index3 <= 11; index3++) {
-        bitbot.setPixelColor(index3, 0xFF0000)
+        bitbot.setPixelColor(index3, 0xFFFFFF)
     }
     basic.showLeds(`
         . . # . .
@@ -280,6 +314,8 @@ function Lights_While_Line_folowers_on () {
 }
 let Fjärrstyr = 0
 let Speed = 0
+let sonar = 0
+let light2 = 0
 let Line = 0
 let mode = 0
 let lock = 0
@@ -289,6 +325,11 @@ radio.setGroup(1)
 I()
 bitbot.ledBrightness(255)
 led.setBrightness(255)
+basic.forever(function () {
+    if (bitbot.sonar(BBPingUnit.Centimeters) < 10) {
+        Stop()
+    }
+})
 control.inBackground(function () {
     while (lock == 1) {
         while (Line == 1) {
@@ -300,6 +341,31 @@ control.inBackground(function () {
                 Lights_While_Line_folowers_on()
             } else if (bitbot.readLine(BBLineSensor.Left) == 0 == (bitbot.readLine(BBLineSensor.Right) == 0)) {
                 bitbot.drive(Speed)
+            }
+        }
+    }
+})
+control.inBackground(function () {
+    while (lock == 1) {
+        while (light2 == 1) {
+            if (bitbot.readLight(BBLightSensor.Left) == 1) {
+                bitbot.driveTurnMilliseconds(BBRobotDirection.Left, 300, 45)
+            } else if (bitbot.readLight(BBLightSensor.Right) == 1) {
+                bitbot.driveTurnMilliseconds(BBRobotDirection.Right, 300, 45)
+            } else if (bitbot.readLight(BBLightSensor.Left) == 0 == (bitbot.readLight(BBLightSensor.Left) == 0)) {
+                bitbot.drive(Speed)
+            }
+        }
+    }
+})
+control.inBackground(function () {
+    while (lock == 1) {
+        while (sonar == 1) {
+            if (bitbot.sonar(BBPingUnit.Centimeters) < 10) {
+                Stop()
+                bitbot.rotatems(BBRobotDirection.Left, 60, 100)
+            } else {
+                bitbot.go(BBDirection.Forward, 60)
             }
         }
     }

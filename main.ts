@@ -326,47 +326,41 @@ I()
 bitbot.ledBrightness(255)
 led.setBrightness(255)
 basic.forever(function () {
+    if (lock == 1 && light2 == 1) {
+        if (bitbot.readLight(BBLightSensor.Left) == 1) {
+            bitbot.driveTurnMilliseconds(BBRobotDirection.Left, 300, 45)
+        } else if (bitbot.readLight(BBLightSensor.Right) == 1) {
+            bitbot.driveTurnMilliseconds(BBRobotDirection.Right, 300, 45)
+        } else if (bitbot.readLight(BBLightSensor.Left) == 0 == (bitbot.readLight(BBLightSensor.Left) == 0)) {
+            bitbot.drive(400)
+        }
+    }
+})
+basic.forever(function () {
     if (bitbot.sonar(BBPingUnit.Centimeters) < 10) {
         Stop()
     }
 })
-control.inBackground(function () {
-    while (lock == 1) {
-        while (Line == 1) {
-            if (bitbot.readLine(BBLineSensor.Left) == 1) {
-                bitbot.driveTurnMilliseconds(BBRobotDirection.Left, 300, 45)
-                Lights_While_Line_folowers_on()
-            } else if (bitbot.readLine(BBLineSensor.Right) == 1) {
-                bitbot.driveTurnMilliseconds(BBRobotDirection.Right, 300, 45)
-                Lights_While_Line_folowers_on()
-            } else if (bitbot.readLine(BBLineSensor.Left) == 0 == (bitbot.readLine(BBLineSensor.Right) == 0)) {
-                bitbot.drive(Speed)
-            }
+basic.forever(function () {
+    if (lock == 1 && Line == 1) {
+        if (bitbot.readLine(BBLineSensor.Left) == 1) {
+            bitbot.driveTurnMilliseconds(BBRobotDirection.Left, 300, 45)
+            Lights_While_Line_folowers_on()
+        } else if (bitbot.readLine(BBLineSensor.Right) == 1) {
+            bitbot.driveTurnMilliseconds(BBRobotDirection.Right, 300, 45)
+            Lights_While_Line_folowers_on()
+        } else if (bitbot.readLine(BBLineSensor.Left) == 0 == (bitbot.readLine(BBLineSensor.Right) == 0)) {
+            bitbot.drive(Speed)
         }
     }
 })
-control.inBackground(function () {
-    while (lock == 1) {
-        while (light2 == 1) {
-            if (bitbot.readLight(BBLightSensor.Left) == 1) {
-                bitbot.driveTurnMilliseconds(BBRobotDirection.Left, 300, 45)
-            } else if (bitbot.readLight(BBLightSensor.Right) == 1) {
-                bitbot.driveTurnMilliseconds(BBRobotDirection.Right, 300, 45)
-            } else if (bitbot.readLight(BBLightSensor.Left) == 0 == (bitbot.readLight(BBLightSensor.Left) == 0)) {
-                bitbot.drive(Speed)
-            }
-        }
-    }
-})
-control.inBackground(function () {
-    while (lock == 1) {
-        while (sonar == 1) {
-            if (bitbot.sonar(BBPingUnit.Centimeters) < 10) {
-                Stop()
-                bitbot.rotatems(BBRobotDirection.Left, 60, 100)
-            } else {
-                bitbot.go(BBDirection.Forward, 60)
-            }
+basic.forever(function () {
+    if (lock == 1 && sonar == 1) {
+        if (bitbot.sonar(BBPingUnit.Centimeters) < 10) {
+            Stop()
+            bitbot.rotatems(BBRobotDirection.Left, 60, 100)
+        } else {
+            bitbot.go(BBDirection.Forward, 60)
         }
     }
 })

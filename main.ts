@@ -98,6 +98,7 @@ radio.onReceivedNumber(function (receivedNumber) {
                 mode = 4
             } else if (mode == 5) {
                 light2 = 0
+                Stop()
             } else if (mode == 6) {
                 sonar = 0
             }
@@ -239,6 +240,7 @@ function I () {
     Line = 0
     sonar = 0
     light2 = 0
+    Security = 0
 }
 function driveForward () {
     Lights_forward()
@@ -312,6 +314,7 @@ function Lights_While_Line_folowers_on () {
         . . # . .
         `)
 }
+let Security = 0
 let Fjärrstyr = 0
 let Speed = 0
 let sonar = 0
@@ -326,22 +329,18 @@ I()
 bitbot.ledBrightness(255)
 led.setBrightness(255)
 basic.forever(function () {
-    if (lock == 1 && light2 == 1) {
-        if (bitbot.readLight(BBLightSensor.Left) == 1) {
-            bitbot.driveTurnMilliseconds(BBRobotDirection.Left, 300, 45)
-        } else if (bitbot.readLight(BBLightSensor.Right) == 1) {
-            bitbot.driveTurnMilliseconds(BBRobotDirection.Right, 300, 45)
-        } else if (bitbot.readLight(BBLightSensor.Left) == 0 == (bitbot.readLight(BBLightSensor.Left) == 0)) {
-            bitbot.drive(400)
-        }
+    if (Speed < 100) {
+        Speed = 30
+    } else if (Speed > 30) {
+        Speed = 100
     }
 })
 basic.forever(function () {
-    if (bitbot.sonar(BBPingUnit.Centimeters) < 10) {
+    if (bitbot.sonar(BBPingUnit.Centimeters) < 10 && Security == 1) {
         Stop()
     }
 })
-basic.forever(function () {
+control.inBackground(function () {
     if (lock == 1 && Line == 1) {
         if (bitbot.readLine(BBLineSensor.Left) == 1) {
             bitbot.driveTurnMilliseconds(BBRobotDirection.Left, 300, 45)
@@ -354,7 +353,18 @@ basic.forever(function () {
         }
     }
 })
-basic.forever(function () {
+control.inBackground(function () {
+    if (lock == 1 && light2 == 1) {
+        if (bitbot.readLight(BBLightSensor.Left) == 1) {
+            bitbot.driveTurnMilliseconds(BBRobotDirection.Left, 300, 45)
+        } else if (bitbot.readLight(BBLightSensor.Right) == 1) {
+            bitbot.driveTurnMilliseconds(BBRobotDirection.Right, 300, 45)
+        } else if (bitbot.readLight(BBLightSensor.Left) == 0 == (bitbot.readLight(BBLightSensor.Left) == 0)) {
+            bitbot.drive(400)
+        }
+    }
+})
+control.inBackground(function () {
     if (lock == 1 && sonar == 1) {
         if (bitbot.sonar(BBPingUnit.Centimeters) < 10) {
             Stop()

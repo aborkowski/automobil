@@ -137,9 +137,6 @@ radio.onReceivedNumber(function (receivedNumber) {
                 Speed = Speed - 10
             } else if (mode == 3) {
                 Speed = Speed + 10
-            } else if (mode == 4) {
-                Start()
-                I()
             } else if (Speed == 100) {
                 Speed = 30
             } else if (Speed > 30) {
